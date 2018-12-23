@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { fetchPosts } from '../actions';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import Sidebar from './Sidebar';
 
 class Blog extends Component {
 
@@ -26,10 +27,13 @@ class Blog extends Component {
   render() {
     return (
       <div className="Blog">
-        <img style={{display: this.props.showLoader}} className="loader" src="loader.svg" alt="loader" />
-        <div className="">
-          {this.renderPosts()}
+        <div className="blog-content">
+          <img style={{display: this.props.showLoader}} className="loader" src="loader.svg" alt="loader" />
+          <div className="">
+            {this.renderPosts()}
+          </div>
         </div>
+        <Sidebar />
       </div>
     );
   }

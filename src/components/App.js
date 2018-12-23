@@ -13,6 +13,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+      {/* LOGO */}
+      <div>LOGO</div>
+      
+      {/* NAVIGATION */}
         <nav>
           <NavLink exact activeClassName="active-menu" to="/">Home</NavLink>
           <NavLink exact activeClassName="active-menu" to="/blog">Blog</NavLink>
@@ -21,7 +25,7 @@ class App extends Component {
           <NavLink exact activeClassName="active-menu" to="/kontakt">Kontakt</NavLink>
         </nav>
 
-
+        {/* MAIN CONTENT */}
         <Switch>
            <Route exact path="/" component={Home} />
            <Route exact path="/blog" component={Blog} />
@@ -30,6 +34,8 @@ class App extends Component {
            <Route component={Page404} />
          </Switch>
 
+         {/* FOOTER */}
+         <div className="footer">Stopka</div>
 
       </div>
     );
