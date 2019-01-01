@@ -8,11 +8,13 @@ import { NavLink } from 'react-router-dom';
 class Home extends Component {
 
   componentDidMount() {
-    this.props.fetchPosts();
+    if(!this.props.home) {
+      this.props.fetchPosts();
+    }
   }
 
   renderSlider() {
-    return this.props.posts.slice(0, 3).map(el => {
+    return this.props.slider.map(el => {
       return (
         <div key={el.id}>
           <h1>{el.title.rendered}</h1>
@@ -25,7 +27,7 @@ class Home extends Component {
   }
 
   renderPosts() {
-    return this.props.posts.slice(0, 6).map(el => {
+    return this.props.home.map(el => {
       return (
         <div key={el.id}>
           <h1>{el.title.rendered}</h1>
@@ -36,14 +38,15 @@ class Home extends Component {
   }
 
   render() {
+    //console.log(this.props);
     return (
       <div className="Contact">
         <div className="">
-          {this.renderSlider()}
+          {this.props.slider ? this.renderSlider() : null}
         </div>
         <hr />
         <div className="">
-          {this.renderPosts()}
+          {this.props.home ? this.renderPosts() : null}
         </div>
       </div>
     );
@@ -52,8 +55,9 @@ class Home extends Component {
 
 const mapStateToProps = state => {
   return {
-    posts: state.posts
-  };
+    slider: state.posts.slider,
+    home: state.posts.home
+  }
 }
 
 export default connect(mapStateToProps, {fetchPosts})(Home);

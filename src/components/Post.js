@@ -31,8 +31,7 @@ class Post extends Component {
     console.log(this.props);
     return (
       <div className="Post">
-      <img style={{display: this.props.showLoader}} className="loader" src="../public/loader.svg" alt="loader" />
-        {this.props.post.length > 0 ? this.renderPost() : null}
+        {this.props.post ? this.renderPost() : null}
       </div>
     );
   }
@@ -41,8 +40,7 @@ class Post extends Component {
 const mapStateToProps = state => {
 console.log(state);
   return {
-    //posts: state.posts,
-    post: state.post,
+    post: state.posts.post,
     showLoader: state.showLoader
   };
 }
