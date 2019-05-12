@@ -3,6 +3,11 @@ import { fetchPosts } from '../actions';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
+import Slider from './Slider';
+import AboutUs from './AboutUs';
+import LatestBlog from './LatestBlog';
+import HappyClients from './HappyClients';
+
 //TODO: handle images
 
 class Home extends Component {
@@ -19,7 +24,7 @@ class Home extends Component {
         <div key={el.id}>
           <h1>{el.title.rendered}</h1>
           <p dangerouslySetInnerHTML={{__html: el.excerpt.rendered}} />
-          <NavLink exact activeClassName="active-menu" to={`/post/${el.id}`} >Więcej...</NavLink>
+          <NavLink exact activeclassName="active-menu" to={`/post/${el.id}`} >Więcej...</NavLink>
 
         </div>
       )
@@ -37,9 +42,10 @@ class Home extends Component {
     })
   }
 
-  render() {
+  renderCopy() {
     //console.log(this.props);
     return (
+      
       <div className="Contact">
         <div className="">
           {this.props.slider ? this.renderSlider() : null}
@@ -49,6 +55,17 @@ class Home extends Component {
           {this.props.home ? this.renderPosts() : null}
         </div>
       </div>
+    );
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        <Slider />
+        <AboutUs />
+        <LatestBlog />
+        <HappyClients />
+      </React.Fragment>
     );
   }
 }

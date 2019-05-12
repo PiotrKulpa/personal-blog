@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import './App.css';
+//import './App.css';
+import Menu from './Menu';
 import Home from './Home';
 import Blog from './Blog';
 import Post from './Post';
 import Contact from './Contact';
 import Page404 from './Page404';
+import Footer from './Footer';
 import {BrowserRouter as Router, Route, Switch, NavLink, Redirect} from 'react-router-dom';
 
 
@@ -12,18 +14,15 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      
+      
+      <div id="wrapper" class="wrapper">
       {/* LOGO */}
       <div>LOGO</div>
       
       {/* NAVIGATION */}
-        <nav>
-          <NavLink exact activeClassName="active-menu" to="/">Home</NavLink>
-          <NavLink exact activeClassName="active-menu" to="/blog">Blog</NavLink>
-          <a href="http://prodentica.info/">Prodentica</a>
-          <a href="https://prestigelublin.eu/">Prestige</a>
-          <NavLink exact activeClassName="active-menu" to="/kontakt">Kontakt</NavLink>
-        </nav>
+
+      <Menu />
 
         {/* MAIN CONTENT */}
         <Switch>
@@ -35,9 +34,10 @@ class App extends Component {
          </Switch>
 
          {/* FOOTER */}
-         <div className="footer">Stopka</div>
+         <Footer />
 
       </div>
+      
     );
   }
 }
