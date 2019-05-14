@@ -75,18 +75,18 @@ export default class Footer extends Component {
         </footer>
          {/* <!-- Footer Area End Here --> */}
          {/* <!-- Search Box Start Here --> */}
-         <div id="header-search" class="header-search">
-             <button type="button" class="close">×</button>
-             <form class="header-search-form">
-                 <input type="search" value="" placeholder="Type here........" />
-                 <button type="submit" class="search-btn">
-                     <i class="flaticon-search"></i>
+         <div id="header-search" className="header-search">
+             <button type="button" className="close">×</button>
+             <form className="header-search-form">
+                 <input type="search" placeholder="Type here........" />
+                 <button type="submit" className="search-btn">
+                     <i className="flaticon-search"></i>
                  </button>
              </form>
          </div>
          {/* <!-- Search Box End Here --> */}
          {/* <!-- Off canvas Menu Start --> */}
-         <ul class="offcanvas-navigation">
+         <ul className="offcanvas-navigation">
              <li>
                  <a href="index.html">Home</a>
              </li>
@@ -100,10 +100,10 @@ export default class Footer extends Component {
                  <a href="single-portfolio1.html">Portfolio</a>
              </li>
          </ul>
-         <svg class="shape-overlays" viewBox="0 0 100 100" preserveAspectRatio="none">
-             <path class="shape-overlays__path" d="M 0 100 C 50 100 50 100 100 100 V 100 H 0"></path>
-             <path class="shape-overlays__path" d="M 0 100 C 50 100 50 100 100 100 V 100 H 0"></path>
-             <path class="shape-overlays__path" d="M 0 100 C 50 100 50 100 100 100 V 100 H 0"></path>
+         <svg className="shape-overlays" viewBox="0 0 100 100" preserveAspectRatio="none">
+             <path className="shape-overlays__path" d="M 0 100 C 50 100 50 100 100 100 V 100 H 0"></path>
+             <path className="shape-overlays__path" d="M 0 100 C 50 100 50 100 100 100 V 100 H 0"></path>
+             <path className="shape-overlays__path" d="M 0 100 C 50 100 50 100 100 100 V 100 H 0"></path>
          </svg>
          {/*  Off canvas Menu End  */}
          </React.Fragment>

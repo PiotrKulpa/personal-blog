@@ -16,7 +16,7 @@ class App extends Component {
     return (
       
       
-      <div id="wrapper" class="wrapper">
+      <div id="wrapper" className="wrapper">
       {/* LOGO */}
       <div>LOGO</div>
       
