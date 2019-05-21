@@ -12,7 +12,7 @@ export default class Footer extends Component {
                         <div className="footer-box-layout2">
                             <div className="footer-logo">
                                 <a href="">
-                                    <img src="img/footer-logo.png" alt="Logo" />
+                                    <img src="img/jsykutlogo-footer.png" alt="Logo" />
                                 </a>
                             </div>
                             <ul className="footer-menu">
@@ -67,7 +67,7 @@ export default class Footer extends Component {
                                     </a>
                                 </li>
                             </ul>
-                            <div className="copyright">Copyright © 2018 by Zugan. All rights reserved.</div>
+                            <div className="copyright">Copyright © 2018 by J. Sykut. All rights reserved.</div>
                         </div>
                     </div>
                 </div>

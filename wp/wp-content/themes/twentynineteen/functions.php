@@ -306,3 +306,10 @@ require get_template_directory() . '/inc/template-tags.php';
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
+
+/**
+ * Customizer hide post wysywig.
+ */
+add_action( 'init', function() {
+  remove_post_type_support( 'post', 'editor' );
+}, 99);

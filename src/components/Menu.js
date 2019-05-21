@@ -19,9 +19,11 @@ export default class Menu extends Component {
               <div className="row no-gutters d-flex align-items-center">
                   <div className="col-lg-2 col-md-2 d-flex justify-content-start">
                       <div className="logo-area">
-                          <a href="index.html" className="temp-logo">
-                              <img src="img/footer-logo1.png" alt="logo" className="img-fluid" />
-                          </a>
+                      <NavLink exact activeClassName="active-menu temp-logo" to="/">
+                          
+                              <img src="img/jsykutlogo.jpg" alt="logo" className="img-fluid" />
+                          
+                      </NavLink>
                       </div>
                   </div>
                   <div className="col-lg-8 col-md-8 d-flex justify-content-center possition-static">

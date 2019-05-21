@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import Sidebar from './Sidebar';
+import Pagination from './Pagination';
 
 import { fetchPosts } from '../actions';
 import { sortPosts } from '../actions';
@@ -185,14 +186,7 @@ class Blog extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="pagination-layout2 margin-b-30 d-flex justify-content-center">
-                        <ul>
-                            <li><a href="#">01</a></li>
-                            <li><a href="#" className="active">02</a></li>
-                            <li><a href="#">03</a></li>
-                            <li><a href="#">04</a></li>
-                        </ul>
-                    </div>   
+                  <Pagination />    
                 </div>
                 <Sidebar />
             </div>

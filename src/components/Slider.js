@@ -15,7 +15,7 @@ class Slider extends Component {
     return (
 
       <section className="slider-wrap-layout1 box-layout-child-4">
-        <div className="slider-left-side-content">WELCOME TO ZUGAN</div>
+        <div className="slider-left-side-content">JANUSZ SYKUT BLOG</div>
         <div className="slider-right-side-content">
           <ul>
             <li>
@@ -68,6 +68,7 @@ class Slider extends Component {
           nav={false}
           autoplay={true}
           items={1}
+          dots={false}
         >
           <div class="item">
             <img src="img/slider/slide2-1.jpg" alt="slider" title="#slider-direction-1" />
