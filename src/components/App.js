@@ -8,15 +8,19 @@ import Contact from './Contact';
 import Page404 from './Page404';
 import Footer from './Footer';
 import {BrowserRouter as Router, Route, Switch, NavLink, Redirect} from 'react-router-dom';
+import Preloader from './Preloader';
 
 
 class App extends Component {
 
   render() {
     return (
-      
-      
+        
       <div id="wrapper" className="wrapper">
+
+      {/* PRELOADER */}
+      {/* <Preloader /> */}
+
       {/* LOGO */}
       <div>LOGO</div>
       
