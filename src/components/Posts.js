@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
@@ -15,28 +16,36 @@ class Posts extends Component {
   }
   
   render() {
+    
     return (
+      this.props.posts && this.props.posts.length > 0  ? 
+      this.props.posts.map((el) => 
       <div className="col-xl-12 col-lg-6 col-md-6 col-12">
         <div className="blog-box-layout5">
           <div className="media media-none--lg">
             <div className="item-img">
-              <a href="single-blog1.html"><img src="img/blog/blog22.jpg" alt="Blog" /></a>
+              <a href="single-blog1.html"><img src={el.acf.image.sizes.thumbnail} alt="Blog" /></a>
             </div>
             <div className="media-body">
               <ul className="entry-meta">
-                <li>June 23, 2018</li>
-                <li><a href="#">Branding</a><a href="#">Logo</a></li>
+                <li>{el.acf.date}</li>
+                <li>
+                {el.acf.tags.map((tag) => <a href="#">{tag.name}</a>)}
+                </li>
               </ul>
-              <h3 className="item-title"><a href="single-blog1.html">Here the old man launched area  into a disquisition</a></h3>
-              <p>Portfo quntum imperdiet Deartuis sagittis are ipsum Praesent mauris fusce
-                                        nec tellus sedye augue semper porta.</p>
-              <a href="single-blog1.html" className="item-btn">Continue Reading
-                <i className="flaticon-next"></i>
-              </a>
+              <h3 className="item-title"><a href="single-blog1.html">{el.acf.title}</a></h3>
+              <p dangerouslySetInnerHTML={{__html: el.acf.text.slice(0, 107) + '...'}} />
+              <NavLink activeClassName="active-menu temp-logo" className="item-btn" to={`/blog/${el.id}`}>
+                Czytaj dalej <i className="flaticon-next"></i>
+              </NavLink>
             </div>
           </div>
         </div>
       </div>
+      )
+      : 
+      null
+      
     )
   }
 }
