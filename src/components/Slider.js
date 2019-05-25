@@ -70,7 +70,7 @@ class Slider extends Component {
           items={1}
           dots={false}
         >
-          <div class="item">
+          <div className="item">
             <img src="img/slider/slide2-1.jpg" alt="slider" title="#slider-direction-1" />
             <div id="slider-direction-21" className="t-cn slider-direction">
               <div className="slider-content s-tb slide-1">
@@ -91,8 +91,8 @@ class Slider extends Component {
               </div>
             </div>
           </div>
-          <div class="item"><img src="img/slider/slide2-2.jpg" alt="slider" title="#slider-direction-1" /></div>
-          <div class="item"><img src="img/slider/slide2-3.jpg" alt="slider" title="#slider-direction-1" /></div>
+          <div className="item"><img src="img/slider/slide2-2.jpg" alt="slider" title="#slider-direction-1" /></div>
+          <div className="item"><img src="img/slider/slide2-3.jpg" alt="slider" title="#slider-direction-1" /></div>
 
         </OwlCarousel>
       </section>

@@ -5,7 +5,7 @@ import Home from './Home';
 import Blog from './Blog';
 import Post from './Post';
 import Contact from './Contact';
-import Page404 from './Page404';
+import NotFound from './NotFound';
 import Footer from './Footer';
 import {BrowserRouter as Router, Route, Switch, NavLink, Redirect} from 'react-router-dom';
 import Preloader from './Preloader';
@@ -34,7 +34,7 @@ class App extends Component {
            <Route exact path="/blog" component={Blog} />
            <Route exact path="/blog/:id" component={Post} />
            <Route exact path="/kontakt" component={Contact} />
-           <Route component={Page404} />
+           <Route component={NotFound} />
          </Switch>
 
          {/* FOOTER */}

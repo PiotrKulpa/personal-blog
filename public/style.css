@@ -8767,6 +8767,8 @@ body.fp-responsive .section {
   left: 0;
   right: 0;
   bottom: 0;
+  background-color: white !important;
+  z-index: 9999;
 }
 .error-page .error-page-content-wrap {
   height: 100%;

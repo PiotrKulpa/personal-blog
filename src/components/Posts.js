@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
@@ -7,12 +7,14 @@ import { fetchPosts } from '../actions';
 import { sortPosts } from '../actions';
 import { showMore } from '../actions';
 
+import NotFound from './NotFound';
+
 class Posts extends Component {
 
   componentDidMount() {
-    if (!this.props.posts) {
+    // if (!this.props.posts) {
       this.props.fetchPosts();
-    }
+    // }
   }
   
   render() {
@@ -20,7 +22,7 @@ class Posts extends Component {
     return (
       this.props.posts && this.props.posts.length > 0  ? 
       this.props.posts.map((el) => 
-      <div className="col-xl-12 col-lg-6 col-md-6 col-12">
+      <div key={el.id} className="col-xl-12 col-lg-6 col-md-6 col-12">
         <div className="blog-box-layout5">
           <div className="media media-none--lg">
             <div className="item-img">
@@ -44,7 +46,7 @@ class Posts extends Component {
       </div>
       )
       : 
-      null
+      <div>Ładuję dane...</div>
       
     )
   }
