@@ -7,7 +7,7 @@ import Post from './Post';
 import Contact from './Contact';
 import NotFound from './NotFound';
 import Footer from './Footer';
-import {BrowserRouter as Router, Route, Switch, NavLink, Redirect} from 'react-router-dom';
+import { Route, Switch, } from 'react-router-dom';
 import Preloader from './Preloader';
 
 
@@ -19,7 +19,7 @@ class App extends Component {
       <div id="wrapper" className="wrapper">
 
       {/* PRELOADER */}
-      {/* <Preloader /> */}
+      <Preloader />
 
       {/* LOGO */}
       <div>LOGO</div>

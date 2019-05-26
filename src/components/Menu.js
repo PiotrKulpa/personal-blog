@@ -1,15 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
-{/* NAVIGATION */}
-{/* <nav>
-<NavLink exact activeClassName="active-menu" to="/">Home</NavLink>
-<NavLink exact activeClassName="active-menu" to="/blog">Blog</NavLink>
-<a href="http://prodentica.info/">Prodentica</a>
-<a href="https://prestigelublin.eu/">Prestige</a>
-<NavLink exact activeClassName="active-menu" to="/kontakt">Kontakt</NavLink>
-</nav> */}
-
 export default class Menu extends Component {
   render() {
     return (
@@ -21,7 +12,7 @@ export default class Menu extends Component {
                       <div className="logo-area">
                       <NavLink exact activeClassName="active-menu temp-logo" to="/">
                           
-                              <img src="img/jsykutlogo.jpg" alt="logo" className="img-fluid" />
+                              <img src="/img/januszsykut-personal.png" alt="logo" className="img-fluid" />
                           
                       </NavLink>
                       </div>

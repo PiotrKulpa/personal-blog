@@ -6665,6 +6665,7 @@ header.header {
 .inner-page-banner {
   display: block;
   padding: 10rem 0;
+  background-image: url('/img/figure/banner.jpg')
 }
 .inner-page-banner .breadcrumbs-area {
   position: relative;

@@ -3,7 +3,7 @@ import { fetchPosts } from '../actions';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-import Slider from './Slider';
+import TopSlider from './TopSlider';
 import AboutUs from './AboutUs';
 import LatestBlog from './LatestBlog';
 import HappyClients from './HappyClients';
@@ -61,7 +61,7 @@ class Home extends Component {
   render() {
     return (
       <React.Fragment>
-        <Slider />
+        <TopSlider />
         <AboutUs />
         <LatestBlog />
         <HappyClients />

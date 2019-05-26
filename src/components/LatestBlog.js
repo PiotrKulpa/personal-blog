@@ -26,7 +26,7 @@ export default class LatestBlog extends Component {
                                 standard dumen been the industry'so.</p>
                             <ul className="entry-meta">
                                 <li>By
-                                    <a href="#">admin,</a>
+                                    <a href="/">admin,</a>
                                 </li>
                                 <li>June 23, 2018</li>
                             </ul>
@@ -48,7 +48,7 @@ export default class LatestBlog extends Component {
                                 standard dumen been the industry'so.</p>
                             <ul className="entry-meta">
                                 <li>By
-                                    <a href="#">admin,</a>
+                                    <a href="/">admin,</a>
                                 </li>
                                 <li>June 23, 2018</li>
                             </ul>

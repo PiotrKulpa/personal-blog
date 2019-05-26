@@ -21,7 +21,7 @@ export default class AboutUs extends Component {
                               standard dummy text ever since thewhen printer took a galleywhen an unknown printer
                               took a galley
                               of type and scrambled it to make a type specimen book. It has survived not only.</p>
-                          <div className="about-right-side-content">About Us</div>
+                          <div className="about-right-side-content">O Mnie</div>
                       </div>
                   </div>
                   <div className="col-lg-5 order-lg-1">

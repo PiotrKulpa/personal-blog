@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import OwlCarousel from 'react-owl-carousel';
-import 'owl.carousel/dist/assets/owl.carousel.css';
-import 'owl.carousel/dist/assets/owl.theme.default.css';
+// import OwlCarousel from 'react-owl-carousel';
+// import 'owl.carousel/dist/assets/owl.carousel.css';
+// import 'owl.carousel/dist/assets/owl.theme.default.css';
 
 export default class HappyClients extends Component {
   render() {
@@ -15,7 +15,7 @@ export default class HappyClients extends Component {
           </div>
           <div className="rc-carousel owl-dot-layout1">
 
-            <OwlCarousel
+            {/* <OwlCarousel
                className="owl-theme"
                loop
                margin={10}
@@ -48,7 +48,7 @@ export default class HappyClients extends Component {
               </div>
 
 
-            </OwlCarousel>
+            </OwlCarousel> */}
 
 
           </div>

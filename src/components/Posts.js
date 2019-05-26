@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink, Redirect } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
@@ -7,14 +7,13 @@ import { fetchPosts } from '../actions';
 import { sortPosts } from '../actions';
 import { showMore } from '../actions';
 
-import NotFound from './NotFound';
 
 class Posts extends Component {
 
   componentDidMount() {
-    // if (!this.props.posts) {
+    if (this.props.posts.length === 0) {
       this.props.fetchPosts();
-    // }
+    }
   }
   
   render() {
@@ -32,7 +31,7 @@ class Posts extends Component {
               <ul className="entry-meta">
                 <li>{el.acf.date}</li>
                 <li>
-                {el.acf.tags.map((tag) => <a href="#">{tag.name}</a>)}
+                {el.acf.tags.map((tag, i) => <a key={i} href="/">{tag.name}</a>)}
                 </li>
               </ul>
               <h3 className="item-title"><a href="single-blog1.html">{el.acf.title}</a></h3>
@@ -53,7 +52,6 @@ class Posts extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     posts: state.posts.blog,
     showLoader: state.showLoader

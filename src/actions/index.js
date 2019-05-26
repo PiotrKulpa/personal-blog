@@ -1,17 +1,6 @@
 import wpInitRestApi from '../api/wpInitRestApi';
-//import wpRestApi from '../api/wpRestApi';
 
 let currentRange = 1;
-
-//akcje:
-
-//fetchPosts
-//showMore - uaktualnia state.blog
-// sortPosts
-//fetchPost - uaktualnia state.post
-
-//searchPosts - uaktualnia search robi fetch o zakresie 100
-//showCategory
 
 export const fetchPosts = () => async dispatch => {
     //show loader icon
@@ -20,6 +9,17 @@ export const fetchPosts = () => async dispatch => {
 
     // pass data to store
     dispatch({ type: 'FETCH_POSTS', payload: res });
+
+    //hide loader icon
+    dispatch({ type: 'SHOW_LOADER', payload: 'none' });
+  };
+
+  export const paginatePosts = (min, max) => dispatch => {
+    //show loader icon
+    dispatch({ type: 'SHOW_LOADER', payload: 'block' });
+
+    // pass data to store
+    dispatch({ type: 'PAGINATE_POSTS', payload: {min, max} });
 
     //hide loader icon
     dispatch({ type: 'SHOW_LOADER', payload: 'none' });

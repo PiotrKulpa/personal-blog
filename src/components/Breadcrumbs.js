@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default class Breadcrumbs extends Component {
   render() {
     return (
-      <section className="inner-page-banner bg-common inner-page-margin" data-bg-image="img/figure/banner.jpg">
+      <section className="inner-page-banner bg-common inner-page-margin" data-bg-image="/img/figure/banner.jpg">
         <div className="container">
           <div className="row">
             <div className="col-12">
