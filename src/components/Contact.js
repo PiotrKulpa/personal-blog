@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 
+import Breadcrumbs from './Breadcrumbs';
+
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 class Contact extends Component {
@@ -16,26 +18,9 @@ class Contact extends Component {
   render() {
     return (
       <React.Fragment>
-        <section className="inner-page-banner bg-common inner-page-margin" data-bg-image="img/figure/banner.jpg">
-          <div className="container">
-            <div className="row">
-              <div className="col-12">
-                <div className="breadcrumbs-area">
-                  <h1>Contact With Us</h1>
-                  <ul>
-                    <li>
-                      <a href="index.html">Home</a>
-                    </li>
-                    <li>
-                      <a href="index11.html">Portfolio</a>
-                    </li>
-                    <li>Contact</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+
+        <Breadcrumbs />
+        
 
         <section className="contact-page-wrap">
           <div className="container">

@@ -47,7 +47,7 @@
     /*-------------------------------------
       Section background image
       -------------------------------------*/
-    imageFunction();
+    //imageFunction();
 
     function imageFunction() {
         // Section static background image
@@ -60,7 +60,7 @@
     }
 
     $(window).on("scroll", function () {
-        imageFunction();
+        //imageFunction();
     });
 
     // Mobile Detect
@@ -102,7 +102,7 @@
       On Scroll
       -------------------------------------*/
     $(window).on("scroll", function () {
-        imageFunction();
+        //imageFunction();
 
         var wrapper = $("body > .wrapper");
 
@@ -673,9 +673,9 @@
 
 
     // Page Preloader
-    $("#preloader").fadeOut("slow", function () {
-        $(this).remove();
-    });
+    // $("#preloader").fadeOut("slow", function () {
+    //     $(this).remove();
+    // });
 
     // Masonry
     var galleryIsoContainer = $("#no-equal-gallery");
