@@ -8818,7 +8818,7 @@ body.fp-responsive .section {
     width: 100%;
   }
 }
-.error-page .error-page-content-wrap .error-content .item-btn {
+.error-page .error-page-content-wrap .error-content .item-btn, .item-back-btn {
   margin-top: 4.5rem;
   margin-bottom: 8rem;
   font-size: 18px;
@@ -8835,12 +8835,12 @@ body.fp-responsive .section {
   -o-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
 }
-.error-page .error-page-content-wrap .error-content .item-btn:hover {
+.error-page .error-page-content-wrap .error-content .item-btn:hover, .item-back-btn:hover {
   background-color: transparent;
   border: 1px solid #111111;
   color: #111111;
 }
-.error-page .error-page-content-wrap .error-content .item-btn i:before {
+.error-page .error-page-content-wrap .error-content .item-btn i:before, .item-back-btn i:before {
   margin-left: 5px;
   font-size: 12px;
   font-weight: 600;

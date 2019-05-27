@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { showPost } from '../actions';
 import { fetchPosts } from '../actions';
 
+import { NavLink } from 'react-router-dom';
+
 import Breadcrumbs from './Breadcrumbs';
 import Sidebar from './Sidebar';
 
@@ -37,7 +39,8 @@ class Post extends Component {
 
   render() {
     return ( 
-      
+    <React.Fragment>
+    <Breadcrumbs />  
     <section className="single-blog-wrap-layout1">
       <div className="container">
           <div className="row">
@@ -87,7 +90,7 @@ class Post extends Component {
                 
                 
                 <div className="pagination-layout1 margin-b-30">
-                  
+                <NavLink className="item-back-btn" to="/blog"><i className="flaticon-back"></i> Wróć do wpisów</NavLink>
                 </div>
               </div>
             </div>  
@@ -98,6 +101,7 @@ class Post extends Component {
             </div>
           </div>
         </section>  
+        </React.Fragment>
     )}
 }
 

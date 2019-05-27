@@ -7,10 +7,10 @@ export default function NotFound() {
       <div className="error-page-content-wrap">
         <div className="error-content">
           <div className="main-logo">
-            <a href="index.html"><img src="img/jsykutlogo.jpg" alt="logo" /></a>
+            <a href="index.html"><img src="/img/jsykutlogo.jpg" alt="logo" /></a>
                     </div>
             <div className="error-logo">
-              <img src="img/404-logo.png" alt="404" />
+              <img src="/img/404-logo.png" alt="404" />
                     </div>
               <h2>Ups! Nie ma takiej strony</h2>
               <p>Strona której szukasz została przeniesiona lub jej nie ma.
