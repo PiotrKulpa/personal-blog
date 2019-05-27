@@ -1,15 +1,37 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { searchPosts } from '../actions';
 
 
 class Sidebar extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {searchValue: ''};
+
+    this.onSearch = this.onSearch.bind(this);
+  }
+
+  searchTimer = null;
+
+  onSearch(event) {
+    let tempVal = event.target.value;
+    clearTimeout(this.searchTimer);
+    this.searchTimer = setTimeout(() => {
+     //console.log(tempVal);
+     this.props.searchPosts(tempVal)
+    }
+    , 1000)
+  }
+
   render() {
     return (
       <div className="col-xl-3 col-lg-4 col-12 sidebar-widget-area sidebar-break-md">
         <div className="widget widget-search-box">
           <div className="input-group stylish-input-group">
-            <input type="text" className="form-control" placeholder="Search here . . ." />
+            <input onChange={(e) => this.onSearch(e)} type="text" className="form-control" placeholder="Search here . . ." />
             <span className="input-group-addon">
-              <button type="submit">
+              <button onClick={this.onSearch} type="submit">
                 <span className="flaticon-search" aria-hidden="true"></span>
               </button>
             </span>
@@ -161,4 +183,4 @@ class Sidebar extends Component {
   }
 }
 
-export default Sidebar;
+export default connect(null, {searchPosts})(Sidebar);

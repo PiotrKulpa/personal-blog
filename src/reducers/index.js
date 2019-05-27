@@ -6,6 +6,7 @@ const initState = {
   home: [],
   slider: [],
   blog: [],
+  search: [],
 }
 
 const postsReducer = (state = initState, action) => {
@@ -23,6 +24,11 @@ const postsReducer = (state = initState, action) => {
         ...state,
         blog: state.default.slice(action.payload.min, action.payload.max),
       };
+    case 'SEARCH_POSTS':
+    return {
+      ...state,
+      search: state.default.filter((el) => el.acf.title.toLowerCase().includes(action.payload.toLowerCase()) ), //TODO
+    };
     case 'SHOW_POST':
       console.log(typeof action.payload);
       

@@ -14,6 +14,19 @@ export const fetchPosts = () => async dispatch => {
     dispatch({ type: 'SHOW_LOADER', payload: 'none' });
   };
 
+  export const searchPosts = (e) => dispatch => {
+    //show loader icon
+    dispatch({ type: 'SHOW_LOADER', payload: 'block' });
+
+    // pass data to search reducer
+    dispatch({ type: 'SEARCH_POSTS', payload: e });
+    console.log(e);
+    
+
+    //hide loader icon
+    dispatch({ type: 'SHOW_LOADER', payload: 'none' });
+  };
+
   export const paginatePosts = (min, max) => dispatch => {
     //show loader icon
     dispatch({ type: 'SHOW_LOADER', payload: 'block' });
