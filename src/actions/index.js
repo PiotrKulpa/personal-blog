@@ -2,16 +2,29 @@ import wpInitRestApi from '../api/wpInitRestApi';
 
 let currentRange = 1;
 
-export const fetchPosts = () => async dispatch => {
+export const fetchPosts = () => dispatch => {
+
+  console.log('feczuje dane');
+  
+  
     //show loader icon
     dispatch({ type: 'SHOW_LOADER', payload: 'block' });
-    const res = await wpInitRestApi('/posts', '');
 
-    // pass data to store
-    dispatch({ type: 'FETCH_POSTS', payload: res });
+     wpInitRestApi('/posts', '')
+     .then((res) => {
+        // pass data to store
+        dispatch({ type: 'FETCH_POSTS', payload: res });
+        
+        //hide loader icon
+        dispatch({ type: 'SHOW_LOADER', payload: 'none' });
 
-    //hide loader icon
-    dispatch({ type: 'SHOW_LOADER', payload: 'none' });
+        //set flag to true
+        dispatch({ type: 'SET_FLAG', payload: true });
+      })
+     .catch( (err)=> console.log(err));
+   
+    
+    
   };
 
   export const searchPosts = (e) => dispatch => {

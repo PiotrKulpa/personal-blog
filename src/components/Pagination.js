@@ -20,20 +20,20 @@ class Pagination extends Component {
   componentDidMount() {
 
     // if (this.props.posts.length === 0) {
-      this.props.fetchPosts().then(() => {
-        this.setState({ pagLinksNumber: Math.ceil(this.props.posts.length / this.props.postPerPage) }, () => {
-          let tempPagLinks = [];
-          for (let x = 0; x < this.state.pagLinksNumber; x++) {
-            let min = x * this.props.postPerPage;
-            let max = min + this.props.postPerPage;
-            tempPagLinks.push({ index: x, min: min, max: max });
-            console.log(tempPagLinks);
-          }
+      // this.props.fetchPosts().then(() => {
+      //   this.setState({ pagLinksNumber: Math.ceil(this.props.posts.length / this.props.postPerPage) }, () => {
+      //     let tempPagLinks = [];
+      //     for (let x = 0; x < this.state.pagLinksNumber; x++) {
+      //       let min = x * this.props.postPerPage;
+      //       let max = min + this.props.postPerPage;
+      //       tempPagLinks.push({ index: x, min: min, max: max });
+      //       console.log(tempPagLinks);
+      //     }
 
-          this.setState({ pagLinks: tempPagLinks })
+      //     this.setState({ pagLinks: tempPagLinks })
 
-        })
-      });
+      //   })
+      // });
     // }
   }
 

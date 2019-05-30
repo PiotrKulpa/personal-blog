@@ -11,8 +11,10 @@ import { showMore } from '../actions';
 class Posts extends Component {
 
   componentDidMount() {
-    if (this.props.posts.length === 0) {
+    
+    if (this.props.blogData === false) {
       this.props.fetchPosts();
+      //console.log('feczuj dane'); 
     }
   }
   
@@ -54,7 +56,8 @@ class Posts extends Component {
 const mapStateToProps = state => {
   return {
     posts: state.posts.blog,
-    showLoader: state.showLoader
+    showLoader: state.showLoader,
+    blogData: state.blogDataFlag,
   };
 }
 

@@ -313,3 +313,8 @@ require get_template_directory() . '/inc/customizer.php';
 add_action( 'init', function() {
   remove_post_type_support( 'post', 'editor' );
 }, 99);
+
+/**
+ * Enable ACF the option show in rest.
+ */
+// add_filter( 'acf/rest_api/field_settings/show_in_rest', '__return_true' );
