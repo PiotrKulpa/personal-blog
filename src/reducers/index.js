@@ -1,12 +1,13 @@
 import { combineReducers } from 'redux';
 import _ from 'lodash';
+import postPerPage from '../helpers/postPerPage';
+import { pagination } from '../helpers/pagination';
 
 const initState = {
   default: [],
-  home: [],
-  slider: [],
-  blog: [],
   search: [],
+  blog: [],
+  pagination: [],
 }
 
 const postsReducer = (state = initState, action) => {
@@ -15,9 +16,8 @@ const postsReducer = (state = initState, action) => {
       return {
         ...state,
         default: action.payload.posts, //all posts
-        home: action.payload.posts.slice(0, 6),
-        slider: action.payload.posts.slice(0, 3),
-        blog: action.payload.posts.slice(0, 6),
+        blog: action.payload.posts.slice(0, postPerPage),
+        pagination: pagination(action.payload.posts.length, postPerPage),
       };
       break;
     
@@ -31,7 +31,9 @@ const postsReducer = (state = initState, action) => {
     case 'SEARCH_POSTS':
       return {
         ...state,
-        search: state.default.filter((el) => el.acf.title.toLowerCase().includes(action.payload.toLowerCase()) ), //TODO
+        search: state.default.filter((el) => el.acf.title.toLowerCase().includes(action.payload.toLowerCase())),
+        blog: state.default.filter((el) => el.acf.title.toLowerCase().includes(action.payload.toLowerCase())).slice(0, 6),
+        pagination: pagination(state.default.filter((el) => el.acf.title.toLowerCase().includes(action.payload.toLowerCase())).length, postPerPage),
       };
       break;
 

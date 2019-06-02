@@ -1,4 +1,6 @@
 import wpInitRestApi from '../api/wpInitRestApi';
+import { pagination } from '../helpers/pagination';
+import postPerPage from '../helpers/postPerPage';
 
 let currentRange = 1;
 
@@ -10,8 +12,9 @@ export const fetchPosts = () => dispatch => {
     //show loader icon
     dispatch({ type: 'SHOW_LOADER', payload: 'block' });
 
-     wpInitRestApi('/posts', '')
+     return wpInitRestApi('/posts', '')
      .then((res) => {
+       
         // pass data to store
         dispatch({ type: 'FETCH_POSTS', payload: res });
         
@@ -22,8 +25,6 @@ export const fetchPosts = () => dispatch => {
         dispatch({ type: 'SET_FLAG', payload: true });
       })
      .catch( (err)=> console.log(err));
-   
-    
     
   };
 
