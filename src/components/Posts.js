@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { fetchPosts } from '../actions';
 import { sortPosts } from '../actions';
 import { showMore } from '../actions';
+import { resetPosts } from '../actions';
 
 
 class Posts extends Component {
@@ -14,8 +15,11 @@ class Posts extends Component {
     
     if (this.props.blogData === false) {
       this.props.fetchPosts();
-      //console.log('feczuj dane'); 
     }
+  }
+
+  componentWillUnmount() {
+    this.props.resetPosts();
   }
   
   render() {
@@ -61,4 +65,4 @@ const mapStateToProps = state => {
   };
 }
 
-export default connect(mapStateToProps, { fetchPosts, sortPosts, showMore })(Posts);
+export default connect(mapStateToProps, { fetchPosts, sortPosts, showMore, resetPosts })(Posts);

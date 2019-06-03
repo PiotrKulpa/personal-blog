@@ -28,6 +28,12 @@ export const fetchPosts = () => dispatch => {
     
   };
 
+  export const resetPosts = () => {
+    return {
+      type: 'RESET_POSTS',
+    }
+  };
+
   export const searchPosts = (e) => dispatch => {
     //show loader icon
     dispatch({ type: 'SHOW_LOADER', payload: 'block' });

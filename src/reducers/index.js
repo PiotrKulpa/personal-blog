@@ -16,15 +16,23 @@ const postsReducer = (state = initState, action) => {
       return {
         ...state,
         default: action.payload.posts, //all posts
+        search: action.payload.posts,
         blog: action.payload.posts.slice(0, postPerPage),
         pagination: pagination(action.payload.posts.length, postPerPage),
+      };
+      break;
+    case 'RESET_POSTS':
+      return {
+        ...state,
+        blog: state.default.slice(0, postPerPage),
+        pagination: pagination(state.default.length, postPerPage),
       };
       break;
     
     case 'PAGINATE_POSTS':
       return {
         ...state,
-        blog: state.default.slice(action.payload.min, action.payload.max),
+        blog: state.search.slice(action.payload.min, action.payload.max),
       };
       break;
     
