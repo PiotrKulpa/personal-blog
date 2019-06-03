@@ -31,7 +31,8 @@ class Posts extends Component {
         <div className="blog-box-layout5">
           <div className="media media-none--lg">
             <div className="item-img">
-              <a href="single-blog1.html"><img src={el.acf.image.sizes.thumbnail} alt="Blog" /></a>
+              {/* <a href="single-blog1.html"><img src={el.acf.image.sizes.thumbnail} alt="Blog" /></a> */}
+              <NavLink to={`/blog/${el.id}`}><img src={el.acf.image.sizes.thumbnail} alt="Blog" /></NavLink>
             </div>
             <div className="media-body">
               <ul className="entry-meta">

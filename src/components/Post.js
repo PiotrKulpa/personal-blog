@@ -16,7 +16,7 @@ import Sidebar from './Sidebar';
 class Post extends Component {
 
   componentDidMount() {
-    if (this.props.posts.length === 0) {
+    if (this.props.blogData === false) {
       this.props.fetchPosts()
       .then(() => this.props.showPost(this.props.match.params.id));
     } else {
@@ -108,9 +108,10 @@ class Post extends Component {
 const mapStateToProps = state => {
   console.log(state);
   return {
-    post: state.posts.post,
+    post: state.posts.blog,
     posts: state.posts.blog,
-    showLoader: state.showLoader
+    showLoader: state.showLoader,
+    blogData: state.blogDataFlag,
   };
 }
 

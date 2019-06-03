@@ -7,6 +7,7 @@ const initState = {
   default: [],
   search: [],
   blog: [],
+  post: [],
   pagination: [],
 }
 
@@ -46,8 +47,7 @@ const postsReducer = (state = initState, action) => {
       break;
 
     case 'SHOW_POST':
-      console.log(typeof action.payload);
-      return {...state, post: state.blog.filter(el => el.id === Number(action.payload))};
+      return {...state, post: state.default.filter(el => el.id === Number(action.payload))};
       break;
 
     case 'SHOW_MORE':
