@@ -1,30 +1,26 @@
 import React, { Component } from 'react';
-
-import OwlCarousel from 'react-owl-carousel';
-import 'owl.carousel/dist/assets/owl.carousel.css';
-import 'owl.carousel/dist/assets/owl.theme.default.css';
+import SlickSlider from "react-slick";
 
 export default class HappyClients extends Component {
   render() {
+    var settings = {
+      dots: true,
+      infinite: true,
+      autoplay: true,
+      autoplaySpeed: 5000,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1
+    };
     return (
       <section className="testimonial-wrap-layout2">
         <div className="container">
           <div className="section-heading text-center heading-dark heading-layout1">
-            <h2>Our Happy Clients</h2>
-            <div className="item-subtitle">Clients say about our works</div>
+            <h2>Co mówią klienci</h2>
+            <div className="item-subtitle">o moich usługach</div>
           </div>
-          <div className="rc-carousel owl-dot-layout1">
-
-            <OwlCarousel
-               className="owl-theme"
-               loop
-               margin={10}
-               nav={false}
-               autoplay={true}
-               items={1}
-               dots={false}
-            >
-
+          <div className="rc-carousel">
+          <SlickSlider {...settings}>
               <div className="item testimonial-box-layout2">
                 <div className="item-paragraph">Sorem Ipsum is simply dummy text of the printing and typesetting
                     indus try. Lorem Ipsum has been
@@ -46,11 +42,7 @@ export default class HappyClients extends Component {
                 <h3 className="item-title">Maxwell</h3>
                 <div className="item-subtitle">Creative Director</div>
               </div>
-
-
-            </OwlCarousel>
-
-
+          </SlickSlider>
           </div>
         </div>
       </section>

@@ -1,39 +1,26 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 
+import Breadcrumbs from './Breadcrumbs';
+
+const AnyReactComponent = ({ text }) => <div>{text}</div>;
+
 class Contact extends Component {
 
   static defaultProps = {
     center: {
-      lat: 59.95,
-      lng: 30.33
+      lat: 51.265624,
+      lng: 22.519576
     },
-    zoom: 11
+    zoom: 14
   }
 
   render() {
     return (
       <React.Fragment>
-        <section className="inner-page-banner bg-common inner-page-margin" data-bg-image="img/figure/banner.jpg">
-          <div className="container">
-            <div className="row">
-              <div className="col-12">
-                <div className="breadcrumbs-area">
-                  <h1>Contact With Us</h1>
-                  <ul>
-                    <li>
-                      <a href="index.html">Home</a>
-                    </li>
-                    <li>
-                      <a href="index11.html">Portfolio</a>
-                    </li>
-                    <li>Contact</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+
+        <Breadcrumbs />
+        
 
         <section className="contact-page-wrap">
           <div className="container">
@@ -45,11 +32,11 @@ class Contact extends Component {
                   defaultCenter={this.props.center}
                   defaultZoom={this.props.zoom}
                 >
-                  {/* <AnyReactComponent
-                    lat={59.955413}
-                    lng={30.337844}
-                    text="My Marker"
-                  /> */}
+                  <AnyReactComponent
+                    lat={51.265624}
+                    lng={22.519576}
+                    text="J. Sykut"
+                  />
                 </GoogleMapReact>
               </div>
             </div>
@@ -57,10 +44,10 @@ class Contact extends Component {
               <div className="row">
                 <div className="col-md-3 col-sm-6">
                   <div className="contact-list">
-                    <h5 className="item-title">Address:</h5>
+                    <h5 className="item-title">Adres:</h5>
                     <ul>
-                      <li>59 Street, loseagne, Newyork</li>
-                      <li>Road City</li>
+                      <li>ul. Altanowa 4/U6</li>
+                      <li>Lublin</li>
                     </ul>
                   </div>
                 </div>
@@ -68,8 +55,8 @@ class Contact extends Component {
                   <div className="contact-list">
                     <h5 className="item-title">Phone:</h5>
                     <ul>
-                      <li>+123 977 015 902</li>
-                      <li>+123 977 015 902</li>
+                      <li>+48 570 727 676</li>
+                      <li>+48 081 742 68 24</li>
                     </ul>
                   </div>
                 </div>
@@ -77,8 +64,7 @@ class Contact extends Component {
                   <div className="contact-list">
                     <h5 className="item-title">E-mail:</h5>
                     <ul>
-                      <li>info@gmail.com</li>
-                      <li>info@gmail.com</li>
+                      <li>sykutjanusz@gmail.com</li>
                     </ul>
                   </div>
                 </div>
@@ -86,8 +72,8 @@ class Contact extends Component {
                   <div className="contact-list">
                     <h5 className="item-title">Fax:</h5>
                     <ul>
-                      <li>+59 987 065 009</li>
-                      <li>+59 987 065 009</li>
+                      <li>-</li>
+                      <li>-</li>
                     </ul>
                   </div>
                 </div>
@@ -95,13 +81,13 @@ class Contact extends Component {
             </div>
             <div className="contact-form-wrap">
               <div className="section-heading text-center heading-dark heading-layout2">
-                <h2>Have a project? <span>Lets make great things</span></h2>
-                <p>we are happy to work with clients from all over the glove.</p>
+                <h2>Masz pytania? <span>pisz śmiało na maila</span></h2>
+                <p>chętnie odpowiem na wszystkie, oczywiście w wolnej chwili.</p>
               </div>
               <form className="contact-form-box" id="contact-form">
                 <div className="row">
                   <div className="col-md-4 form-group">
-                    <input type="text" placeholder="Name *" className="form-control" name="name" data-error="Name field is required" required />
+                    <input type="text" placeholder="imię *" className="form-control" name="name" data-error="Name field is required" required />
                     <div className="help-block with-errors"></div>
                   </div>
                   <div className="col-md-4 form-group">
@@ -109,16 +95,16 @@ class Contact extends Component {
                     <div className="help-block with-errors"></div>
                   </div>
                   <div className="col-md-4 form-group">
-                    <input type="text" placeholder="Subject *" className="form-control" name="subject" data-error="Subject field is required" required />
+                    <input type="text" placeholder="Temat *" className="form-control" name="subject" data-error="Subject field is required" required />
                     <div className="help-block with-errors"></div>
                   </div>
                   <div className="col-12 form-group">
-                    <textarea placeholder="Comments*" className="textarea form-control" name="message" id="form-message" rows="2" cols="20"
+                    <textarea placeholder="Treść *" className="textarea form-control" name="message" id="form-message" rows="2" cols="20"
                       data-error="Message field is required" required></textarea>
                     <div className="help-block with-errors"></div>
                   </div>
                   <div className="col-12 form-group">
-                    <button type="submit" className="item-btn">Sends Message<i className="flaticon-right-arrow"></i></button>
+                    <button type="submit" className="item-btn">Wyślij<i className="flaticon-right-arrow"></i></button>
                   </div>
                 </div>
                 <div className="form-response"></div>

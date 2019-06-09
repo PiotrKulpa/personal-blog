@@ -137,6 +137,11 @@ h5 {
 /*=======================================================================
 [02] Common Style
 =========================================================================*/
+
+.testimonial-box-layout2 .item-img {
+  margin: auto;
+  max-width: 100px;
+}
 a {
   text-decoration: none;
 }
@@ -6660,6 +6665,7 @@ header.header {
 .inner-page-banner {
   display: block;
   padding: 10rem 0;
+  background-image: url('/img/figure/banner.jpg')
 }
 .inner-page-banner .breadcrumbs-area {
   position: relative;
@@ -8762,6 +8768,8 @@ body.fp-responsive .section {
   left: 0;
   right: 0;
   bottom: 0;
+  background-color: white !important;
+  z-index: 9999;
 }
 .error-page .error-page-content-wrap {
   height: 100%;
@@ -8810,7 +8818,7 @@ body.fp-responsive .section {
     width: 100%;
   }
 }
-.error-page .error-page-content-wrap .error-content .item-btn {
+.error-page .error-page-content-wrap .error-content .item-btn, .item-back-btn {
   margin-top: 4.5rem;
   margin-bottom: 8rem;
   font-size: 18px;
@@ -8827,12 +8835,12 @@ body.fp-responsive .section {
   -o-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
 }
-.error-page .error-page-content-wrap .error-content .item-btn:hover {
+.error-page .error-page-content-wrap .error-content .item-btn:hover, .item-back-btn:hover {
   background-color: transparent;
   border: 1px solid #111111;
   color: #111111;
 }
-.error-page .error-page-content-wrap .error-content .item-btn i:before {
+.error-page .error-page-content-wrap .error-content .item-btn i:before, .item-back-btn i:before {
   margin-left: 5px;
   font-size: 12px;
   font-weight: 600;
