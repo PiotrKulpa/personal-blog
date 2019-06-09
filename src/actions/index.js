@@ -1,14 +1,47 @@
 import wpInitRestApi from '../api/wpInitRestApi';
+import { pagination } from '../helpers/pagination';
+import postPerPage from '../helpers/postPerPage';
 
 let currentRange = 1;
 
-export const fetchPosts = () => async dispatch => {
+export const fetchPosts = () => dispatch => {
+
+  console.log('feczuje dane');
+  
+  
     //show loader icon
     dispatch({ type: 'SHOW_LOADER', payload: 'block' });
-    const res = await wpInitRestApi('/posts', '');
 
-    // pass data to store
-    dispatch({ type: 'FETCH_POSTS', payload: res });
+     return wpInitRestApi('/posts', '')
+     .then((res) => {
+       
+        // pass data to store
+        dispatch({ type: 'FETCH_POSTS', payload: res });
+        
+        //hide loader icon
+        dispatch({ type: 'SHOW_LOADER', payload: 'none' });
+
+        //set flag to true
+        dispatch({ type: 'SET_FLAG', payload: true });
+      })
+     .catch( (err)=> console.log(err));
+    
+  };
+
+  export const resetPosts = () => {
+    return {
+      type: 'RESET_POSTS',
+    }
+  };
+
+  export const searchPosts = (e) => dispatch => {
+    //show loader icon
+    dispatch({ type: 'SHOW_LOADER', payload: 'block' });
+
+    // pass data to search reducer
+    dispatch({ type: 'SEARCH_POSTS', payload: e });
+    console.log(e);
+    
 
     //hide loader icon
     dispatch({ type: 'SHOW_LOADER', payload: 'none' });

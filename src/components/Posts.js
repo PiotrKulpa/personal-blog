@@ -6,14 +6,22 @@ import { connect } from 'react-redux';
 import { fetchPosts } from '../actions';
 import { sortPosts } from '../actions';
 import { showMore } from '../actions';
+import { resetPosts } from '../actions';
 
 
 class Posts extends Component {
-
+  
   componentDidMount() {
-    if (this.props.posts.length === 0) {
+
+    window.scrollTo(0, 0);
+    
+    if (this.props.blogData === false) {
       this.props.fetchPosts();
     }
+  }
+
+  componentWillUnmount() {
+    this.props.resetPosts();
   }
   
   render() {
@@ -25,7 +33,8 @@ class Posts extends Component {
         <div className="blog-box-layout5">
           <div className="media media-none--lg">
             <div className="item-img">
-              <a href="single-blog1.html"><img src={el.acf.image.sizes.thumbnail} alt="Blog" /></a>
+              {/* <a href="single-blog1.html"><img src={el.acf.image.sizes.thumbnail} alt="Blog" /></a> */}
+              <NavLink to={`/blog/${el.id}`}><img src={el.acf.image.sizes.thumbnail} alt="Blog" /></NavLink>
             </div>
             <div className="media-body">
               <ul className="entry-meta">
@@ -54,8 +63,9 @@ class Posts extends Component {
 const mapStateToProps = state => {
   return {
     posts: state.posts.blog,
-    showLoader: state.showLoader
+    showLoader: state.showLoader,
+    blogData: state.blogDataFlag,
   };
 }
 
-export default connect(mapStateToProps, { fetchPosts, sortPosts, showMore })(Posts);
+export default connect(mapStateToProps, { fetchPosts, sortPosts, showMore, resetPosts })(Posts);

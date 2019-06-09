@@ -1,15 +1,37 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { searchPosts } from '../actions';
 
 
 class Sidebar extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {searchValue: ''};
+
+    this.onSearch = this.onSearch.bind(this);
+  }
+
+  searchTimer = null;
+
+  onSearch(event) {
+    let tempVal = event.target.value;
+    clearTimeout(this.searchTimer);
+    this.searchTimer = setTimeout(() => {
+     //console.log(tempVal);
+     this.props.searchPosts(tempVal)
+    }
+    , 1000)
+  }
+
   render() {
     return (
       <div className="col-xl-3 col-lg-4 col-12 sidebar-widget-area sidebar-break-md">
         <div className="widget widget-search-box">
           <div className="input-group stylish-input-group">
-            <input type="text" className="form-control" placeholder="Search here . . ." />
+            <input onChange={(e) => this.onSearch(e)} type="text" className="form-control" placeholder="Search here . . ." />
             <span className="input-group-addon">
-              <button type="submit">
+              <button onClick={this.onSearch} type="submit">
                 <span className="flaticon-search" aria-hidden="true"></span>
               </button>
             </span>
@@ -17,33 +39,16 @@ class Sidebar extends Component {
         </div>
         <div className="widget widget-category">
           <div className="section-header header-dark heading-layout3">
-            <h3>Kategoie</h3>
+            <h3>Kategorie</h3>
           </div>
           <ul>
+          { this.props.categories && this.props.categories.length > 0 ? this.props.categories.map((el) =>
             <li>
               <a href="/">
-                <i className="fas fa-angle-right"></i>Product</a>
+                <i className="fas fa-angle-right"></i>{el.name}</a>
             </li>
-            <li>
-              <a href="/">
-                <i className="fas fa-angle-right"></i>Digital Marketing</a>
-            </li>
-            <li>
-              <a href="/">
-                <i className="fas fa-angle-right"></i>Branding</a>
-            </li>
-            <li>
-              <a href="/">
-                <i className="fas fa-angle-right"></i>Box</a>
-            </li>
-            <li>
-              <a href="/">
-                <i className="fas fa-angle-right"></i>Real Estate</a>
-            </li>
-            <li>
-              <a href="/">
-                <i className="fas fa-angle-right"></i>Technology</a>
-            </li>
+           ) : <p>Loading...</p>
+          }
           </ul>
         </div>
         <div className="widget widget-recent-blog">
@@ -161,4 +166,10 @@ class Sidebar extends Component {
   }
 }
 
-export default Sidebar;
+const mapStateToProps = state => {
+  return {
+    categories: state.posts.categories,
+  };
+}
+
+export default connect(mapStateToProps, {searchPosts})(Sidebar);

@@ -15,13 +15,24 @@ import Sidebar from './Sidebar';
 
 class Post extends Component {
 
+  constructor(props){
+    super(props);
+    this.goBack = this.goBack.bind(this);
+  }
+
+  goBack() {
+    this.props.history.goBack();
+  }
+ 
+
   componentDidMount() {
-    if (this.props.posts.length === 0) {
-      this.props.fetchPosts()
-      .then(() => this.props.showPost(this.props.match.params.id));
-    } else {
-      this.props.showPost(this.props.match.params.id)
-    }
+    window.scrollTo(0, 0);
+    // if (this.props.blogData === false) {
+    //   this.props.fetchPosts()
+    //   .then(() => this.props.showPost(this.props.match.params.id));
+    // } else {
+    this.props.showPost(this.props.match.params.id)
+    // }
     
   }
 
@@ -90,7 +101,7 @@ class Post extends Component {
                 
                 
                 <div className="pagination-layout1 margin-b-30">
-                <NavLink className="item-back-btn" to="/blog"><i className="flaticon-back"></i> Wróć do wpisów</NavLink>
+                <button className="item-back-btn" onClick={this.goBack}><i className="flaticon-back"></i> Wróć do wpisów</button>
                 </div>
               </div>
             </div>  
@@ -106,11 +117,11 @@ class Post extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
+  console.log('POST STATE: ' + state);
   return {
     post: state.posts.post,
-    posts: state.posts.blog,
-    showLoader: state.showLoader
+    showLoader: state.showLoader,
+    blogData: state.blogDataFlag,
   };
 }
 
