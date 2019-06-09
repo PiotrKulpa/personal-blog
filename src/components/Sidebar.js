@@ -39,33 +39,16 @@ class Sidebar extends Component {
         </div>
         <div className="widget widget-category">
           <div className="section-header header-dark heading-layout3">
-            <h3>Kategoie</h3>
+            <h3>Kategorie</h3>
           </div>
           <ul>
+          { this.props.categories && this.props.categories.length > 0 ? this.props.categories.map((el) =>
             <li>
               <a href="/">
-                <i className="fas fa-angle-right"></i>Product</a>
+                <i className="fas fa-angle-right"></i>{el.name}</a>
             </li>
-            <li>
-              <a href="/">
-                <i className="fas fa-angle-right"></i>Digital Marketing</a>
-            </li>
-            <li>
-              <a href="/">
-                <i className="fas fa-angle-right"></i>Branding</a>
-            </li>
-            <li>
-              <a href="/">
-                <i className="fas fa-angle-right"></i>Box</a>
-            </li>
-            <li>
-              <a href="/">
-                <i className="fas fa-angle-right"></i>Real Estate</a>
-            </li>
-            <li>
-              <a href="/">
-                <i className="fas fa-angle-right"></i>Technology</a>
-            </li>
+           ) : <p>Loading...</p>
+          }
           </ul>
         </div>
         <div className="widget widget-recent-blog">
@@ -183,4 +166,10 @@ class Sidebar extends Component {
   }
 }
 
-export default connect(null, {searchPosts})(Sidebar);
+const mapStateToProps = state => {
+  return {
+    categories: state.posts.categories,
+  };
+}
+
+export default connect(mapStateToProps, {searchPosts})(Sidebar);

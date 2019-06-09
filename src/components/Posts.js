@@ -10,8 +10,10 @@ import { resetPosts } from '../actions';
 
 
 class Posts extends Component {
-
+  
   componentDidMount() {
+
+    window.scrollTo(0, 0);
     
     if (this.props.blogData === false) {
       this.props.fetchPosts();

@@ -9,6 +9,7 @@ const initState = {
   blog: [],
   post: [],
   pagination: [],
+  categories: [],
 }
 
 const postsReducer = (state = initState, action) => {
@@ -20,6 +21,7 @@ const postsReducer = (state = initState, action) => {
         search: action.payload.posts,
         blog: action.payload.posts.slice(0, postPerPage),
         pagination: pagination(action.payload.posts.length, postPerPage),
+        categories: action.payload.posts.map(el => el.acf.categories[0] ).filter((v,i) => action.payload.posts.map(el => el.acf.categories[0].term_id ).indexOf(v.term_id) === i),  
       };
       break;
     case 'RESET_POSTS':
