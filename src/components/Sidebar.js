@@ -1,3 +1,8 @@
+//TODO actions/reducers for search by
+// category
+// tags
+// archives
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { searchPosts } from '../actions';
