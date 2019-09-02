@@ -47,6 +47,16 @@ export const fetchPosts = () => dispatch => {
     dispatch({ type: 'SHOW_LOADER', payload: 'none' });
   };
 
+  export const sortByCategory = (e) => dispatch => {
+
+    console.log(e);
+    
+
+    // pass data to search reducer
+    dispatch({ type: 'SORT_BY_CATEGORY', payload: e });
+    
+  };
+
   export const paginatePosts = (min, max) => dispatch => {
     //show loader icon
     dispatch({ type: 'SHOW_LOADER', payload: 'block' });

@@ -4,8 +4,6 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { fetchPosts } from '../actions';
-import { sortPosts } from '../actions';
-import { showMore } from '../actions';
 import { resetPosts } from '../actions';
 
 
@@ -18,6 +16,19 @@ class Posts extends Component {
     if (this.props.blogData === false) {
       this.props.fetchPosts();
     }
+  }
+
+  componentDidUpdate() {
+    console.log('uaktualinil się');
+
+    //TODO problem when return from search page
+    //refactor posts:
+    // add blog/strona/1 etc
+
+    //add search results page now routing is bad
+
+
+    
   }
 
   componentWillUnmount() {
@@ -33,8 +44,7 @@ class Posts extends Component {
         <div className="blog-box-layout5">
           <div className="media media-none--lg">
             <div className="item-img">
-              {/* <a href="single-blog1.html"><img src={el.acf.image.sizes.thumbnail} alt="Blog" /></a> */}
-              <NavLink to={`/blog/${el.id}`}><img src={el.acf.image.sizes.thumbnail} alt="Blog" /></NavLink>
+              <NavLink to={`/blog/wpis/${el.id}`}><img src={el.acf.image.sizes.thumbnail} alt="Blog" /></NavLink>
             </div>
             <div className="media-body">
               <ul className="entry-meta">
@@ -45,7 +55,7 @@ class Posts extends Component {
               </ul>
               <h3 className="item-title"><a href="single-blog1.html">{el.acf.title}</a></h3>
               <p dangerouslySetInnerHTML={{__html: el.acf.text.slice(0, 107) + '...'}} />
-              <NavLink activeClassName="active-menu temp-logo" className="item-btn" to={`/blog/${el.id}`}>
+              <NavLink activeClassName="active-menu temp-logo" className="item-btn" to={`/blog/wpis/${el.id}`}>
                 Czytaj dalej <i className="flaticon-next"></i>
               </NavLink>
             </div>
@@ -63,9 +73,8 @@ class Posts extends Component {
 const mapStateToProps = state => {
   return {
     posts: state.posts.blog,
-    showLoader: state.showLoader,
     blogData: state.blogDataFlag,
   };
 }
 
-export default connect(mapStateToProps, { fetchPosts, sortPosts, showMore, resetPosts })(Posts);
+export default connect(mapStateToProps, { fetchPosts,  resetPosts })(Posts);

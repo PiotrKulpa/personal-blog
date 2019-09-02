@@ -5,7 +5,8 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { searchPosts } from '../actions';
+import { searchPosts, sortByCategory } from '../actions';
+import { Redirect } from 'react-router-dom';
 
 
 class Sidebar extends Component {
@@ -15,6 +16,7 @@ class Sidebar extends Component {
     this.state = {searchValue: ''};
 
     this.onSearch = this.onSearch.bind(this);
+    this.onCategory = this.onCategory.bind(this);
   }
 
   searchTimer = null;
@@ -29,6 +31,10 @@ class Sidebar extends Component {
     , 1000)
   }
 
+  onCategory(e) {
+    this.props.sortByCategory(e);
+  }
+
   render() {
     return (
       <div className="col-xl-3 col-lg-4 col-12 sidebar-widget-area sidebar-break-md">
@@ -39,6 +45,7 @@ class Sidebar extends Component {
               <button onClick={this.onSearch} type="submit">
                 <span className="flaticon-search" aria-hidden="true"></span>
               </button>
+              { this.state.searchValue !== '' && <Redirect to={'/search/' + this.state.searchValue}/>}
             </span>
           </div>
         </div>
@@ -47,9 +54,9 @@ class Sidebar extends Component {
             <h3>Kategorie</h3>
           </div>
           <ul>
-          { this.props.categories && this.props.categories.length > 0 ? this.props.categories.map((el) =>
-            <li>
-              <a href="/">
+          { this.props.categories && this.props.categories.length > 0 ? this.props.categories.map((el, i) =>
+            <li key={i} onClick={() => this.onCategory(el.slug)}>
+              <a href="#">
                 <i className="fas fa-angle-right"></i>{el.name}</a>
             </li>
            ) : <p>Loading...</p>
@@ -177,4 +184,4 @@ const mapStateToProps = state => {
   };
 }
 
-export default connect(mapStateToProps, {searchPosts})(Sidebar);
+export default connect(mapStateToProps, {searchPosts, sortByCategory})(Sidebar);

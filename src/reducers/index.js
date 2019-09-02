@@ -48,6 +48,15 @@ const postsReducer = (state = initState, action) => {
       };
       break;
 
+    case 'SORT_BY_CATEGORY':
+      return {
+        ...state,
+        search: state.default.filter((el) => el.acf.categories[0].slug === action.payload),
+        blog: state.default.filter((el) => el.acf.categories[0].slug === action.payload).slice(0, 6),
+        pagination: pagination(state.default.filter((el) => el.acf.categories[0].slug === action.payload).length, postPerPage),
+      };
+      break;
+
     case 'SHOW_POST':
       return {...state, post: state.default.filter(el => el.id === Number(action.payload))};
       break;
