@@ -11,12 +11,13 @@ const GET_POSTS = gql`
            image {
              sourceUrl(size: THUMBNAIL)
            }
-           tags{
-             __typename
+           tags {
+            ... on Tag{
+              name
+            }
            }
          }
          uri
-       
        }
      }
  }

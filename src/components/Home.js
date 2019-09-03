@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { fetchPosts } from '../actions';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 
 import TopSlider from './TopSlider';
 import AboutUs from './AboutUs';

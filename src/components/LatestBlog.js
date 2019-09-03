@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default class LatestBlog extends Component {
   render() {
@@ -14,7 +14,7 @@ export default class LatestBlog extends Component {
       <div className="col-lg-4 col-sm-6">
         <div className="portfolio-box-layout2">
           <div className="item-img">
-            <img src="img/project/project11.jpg" alt="Project Photo" />
+            <img src="img/project/project11.jpg" alt="Project 11" />
             <a href="#test-popup1" className="item-btn inline-popup">
               <i className="flaticon-next" />
             </a>
@@ -24,17 +24,17 @@ export default class LatestBlog extends Component {
               <a href="single-portfolio1.html">Paper Mockup</a>
             </h3>
             <div className="item-subtitle">
-              <a href="#">Element</a>
+              <Link to="#">Element</Link>
             </div>
           </div>
         </div>
         <div id="test-popup1" className="popup-content mfp-hide">
           <div className="media media-none--xs">
             <div className="item-img">
-              <img src="img/project/project11.jpg" alt="img" />
+              <img src="img/project/project11.jpg" alt="project" />
             </div>
             <div className="media-body">
-              <h2 className="item-title"><a href="#">Paper Mockup</a></h2>
+              <h2 className="item-title"><Link to="#">Paper Mockup</Link></h2>
               <ul className="item-category">
                 <li><i className="fas fa-arrow-right" />Brand Identity</li>
                 <li><i className="fas fa-arrow-right" />Web Design &amp; UI</li>
@@ -48,17 +48,17 @@ export default class LatestBlog extends Component {
       <div className="col-lg-4 col-sm-6">
         <div className="portfolio-box-layout2">
           <div className="item-img">
-            <img src="img/project/project7.jpg" alt="Project Photo" />
-            <a href="#test-popup2" className="item-btn inline-popup">
+            <img src="img/project/project7.jpg" alt="Project 7" />
+            <Link to="#test-popup2" className="item-btn inline-popup">
               <i className="flaticon-next" />
-            </a>
+            </Link>
           </div>
           <div className="item-content">
             <h3 className="item-title">
               <a href="single-portfolio1.html">Iconic Branding</a>
             </h3>
             <div className="item-subtitle">
-              <a href="#">Branding</a>
+              <Link to="#">Branding</Link>
             </div>
           </div>
         </div>
@@ -68,7 +68,7 @@ export default class LatestBlog extends Component {
               <img src="img/project/project7.jpg" alt="img" />
             </div>
             <div className="media-body">
-              <h2 className="item-title"><a href="#">Iconic Branding</a></h2>
+              <h2 className="item-title"><Link to="#">Iconic Branding</Link></h2>
               <ul className="item-category">
                 <li><i className="fas fa-arrow-right" />Brand Identity</li>
                 <li><i className="fas fa-arrow-right" />Web Design &amp; UI</li>
@@ -82,7 +82,7 @@ export default class LatestBlog extends Component {
       <div className="col-lg-4 col-sm-6">
         <div className="portfolio-box-layout2">
           <div className="item-img">
-            <img src="img/project/project10.jpg" alt="Project Photo" />
+            <img src="img/project/project10.jpg" alt="Project 10" />
             <a href="#test-popup3" className="item-btn inline-popup">
               <i className="flaticon-next" />
             </a>
@@ -92,7 +92,7 @@ export default class LatestBlog extends Component {
               <a href="single-portfolio1.html">Smart Watch</a>
             </h3>
             <div className="item-subtitle">
-              <a href="#">Watch</a>
+              <Link to="#">Watch</Link>
             </div>
           </div>
         </div>
@@ -102,7 +102,7 @@ export default class LatestBlog extends Component {
               <img src="img/project/project10.jpg" alt="img" />
             </div>
             <div className="media-body">
-              <h2 className="item-title"><a href="#">Smart Watch</a></h2>
+              <h2 className="item-title"><Link to="#">Smart Watch</Link></h2>
               <ul className="item-category">
                 <li><i className="fas fa-arrow-right" />Brand Identity</li>
                 <li><i className="fas fa-arrow-right" />Web Design &amp; UI</li>
@@ -116,7 +116,7 @@ export default class LatestBlog extends Component {
       <div className="col-lg-4 col-sm-6">
         <div className="portfolio-box-layout2">
           <div className="item-img">
-            <img src="img/project/project10.jpg" alt="Project Photo" />
+            <img src="img/project/project10.jpg" alt="Project 10" />
             <a href="#test-popup4" className="item-btn inline-popup">
               <i className="flaticon-next" />
             </a>
@@ -126,7 +126,7 @@ export default class LatestBlog extends Component {
               <a href="single-portfolio1.html">Electronic Port</a>
             </h3>
             <div className="item-subtitle">
-              <a href="#">Accessories</a>
+              <Link to="#">Accessories</Link>
             </div>
           </div>
         </div>
@@ -136,7 +136,7 @@ export default class LatestBlog extends Component {
               <img src="img/project/project10.jpg" alt="img" />
             </div>
             <div className="media-body">
-              <h2 className="item-title"><a href="#">Electronic Port</a></h2>
+              <h2 className="item-title"><Link to="#">Electronic Port</Link></h2>
               <ul className="item-category">
                 <li><i className="fas fa-arrow-right" />Brand Identity</li>
                 <li><i className="fas fa-arrow-right" />Web Design &amp; UI</li>
@@ -150,7 +150,7 @@ export default class LatestBlog extends Component {
       <div className="col-lg-4 col-sm-6">
         <div className="portfolio-box-layout2">
           <div className="item-img">
-            <img src="img/project/project11.jpg" alt="Project Photo" />
+            <img src="img/project/project11.jpg" alt="Project 11" />
             <a href="#test-popup5" className="item-btn inline-popup">
               <i className="flaticon-next" />
             </a>
@@ -160,7 +160,7 @@ export default class LatestBlog extends Component {
               <a href="single-portfolio1.html">Seascape Villa</a>
             </h3>
             <div className="item-subtitle">
-              <a href="#">Aqaba, Jordan</a>
+              <Link to="#">Aqaba, Jordan</Link>
             </div>
           </div>
         </div>
@@ -170,7 +170,7 @@ export default class LatestBlog extends Component {
               <img src="img/project/project11.jpg" alt="img" />
             </div>
             <div className="media-body">
-              <h2 className="item-title"><a href="#">Seascape Villa</a></h2>
+              <h2 className="item-title"><Link to="#">Seascape Villa</Link></h2>
               <ul className="item-category">
                 <li><i className="fas fa-arrow-right" />Brand Identity</li>
                 <li><i className="fas fa-arrow-right" />Web Design &amp; UI</li>
@@ -184,17 +184,17 @@ export default class LatestBlog extends Component {
       <div className="col-lg-4 col-sm-6">
         <div className="portfolio-box-layout2">
           <div className="item-img">
-            <img src="img/project/project7.jpg" alt="Project Photo" />
-            <a href="#test-popup6" className="item-btn inline-popup">
+            <img src="img/project/project7.jpg" alt="Project 7" />
+            <Link to="#test-popup6" className="item-btn inline-popup">
               <i className="flaticon-next" />
-            </a>
+            </Link>
           </div>
           <div className="item-content">
             <h3 className="item-title">
-              <a href="single-portfolio1.html">Seascape Villa</a>
+              <Link to="single-portfolio1.html">Seascape Villa</Link>
             </h3>
             <div className="item-subtitle">
-              <a href="#">Aqaba, Jordan</a>
+              <Link to="#">Aqaba, Jordan</Link>
             </div>
           </div>
         </div>
@@ -204,7 +204,7 @@ export default class LatestBlog extends Component {
               <img src="img/project/project7.jpg" alt="img" />
             </div>
             <div className="media-body">
-              <h2 className="item-title"><a href="#">Seascape Villa</a></h2>
+              <h2 className="item-title"><Link to="#">Seascape Villa</Link></h2>
               <ul className="item-category">
                 <li><i className="fas fa-arrow-right" />Brand Identity</li>
                 <li><i className="fas fa-arrow-right" />Web Design &amp; UI</li>
@@ -217,7 +217,7 @@ export default class LatestBlog extends Component {
       </div>
     </div>
     <div className="loadmore-layout2">
-      <NavLink to="/blog" className="item-btn">Zobacz więcej wpisów</NavLink>
+      <Link to="/blog" className="item-btn">Zobacz więcej wpisów</Link>
     </div>
   </div>
 </section>

@@ -1,6 +1,4 @@
 import wpInitRestApi from '../api/wpInitRestApi';
-import { pagination } from '../helpers/pagination';
-import postPerPage from '../helpers/postPerPage';
 
 let currentRange = 1;
 

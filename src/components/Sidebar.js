@@ -6,7 +6,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { searchPosts, sortByCategory } from '../actions';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 
 class Sidebar extends Component {
@@ -56,8 +56,8 @@ class Sidebar extends Component {
           <ul>
           { this.props.categories && this.props.categories.length > 0 ? this.props.categories.map((el, i) =>
             <li key={i} onClick={() => this.onCategory(el.slug)}>
-              <a href="#">
-                <i className="fas fa-angle-right"></i>{el.name}</a>
+              <Link href="#">
+                <i className="fas fa-angle-right"></i>{el.name}</Link>
             </li>
            ) : <p>Loading...</p>
           }

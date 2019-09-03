@@ -1,9 +1,9 @@
 import React, { memo } from 'react';
-import { NavLink } from 'react-router-dom';
 import Breadcrumbs from './Breadcrumbs';
 import Sidebar from './Sidebar';
 import { useQuery } from '@apollo/react-hooks';
 import GET_POST from '../queries/getPost';
+import Preloader from './Preloader';
 
 
 const Post = (props) => {
@@ -25,8 +25,11 @@ const Post = (props) => {
     treWpisuBloga
   } = postBy || {};
   const{
-    title, text, image
+    title, text, image, tags, date
   } = treWpisuBloga || {};
+
+  console.log(data);
+  
 
   const goBack = () => {
 
@@ -34,7 +37,7 @@ const Post = (props) => {
 
   console.log(image);
 
-  if (loading) return (<p>Loading...</p>);
+  if (loading) return (<Preloader />);
   if (error) return (<p>Spróbuj ponownie.</p>);
 
     return ( 
@@ -50,12 +53,12 @@ const Post = (props) => {
                   <img src={image.sourceUrl} alt="blog" />
                 </div>
                 <div className="blog-content">
-                  {/* <ul className="entry-meta">
-                    <li>{el.acf.date}</li>
+                  <ul className="entry-meta">
+                    <li>{date}</li>
                     <li>
-                      {el.acf.tags.map((tag, i) => <a key={i} href="/">{tag.name}</a>)}
+                      {tags.map((tag, i) => <a key={i} href="/">{tag.name}</a>)}
                     </li>
-                  </ul> */}
+                  </ul>
                   <h2 className="blog-title">{title}</h2>
                   <ul className="post-action">
                     <li>
@@ -92,10 +95,7 @@ const Post = (props) => {
                 <button className="item-back-btn" onClick={goBack}><i className="flaticon-back"></i> Wróć do wpisów</button>
                 </div>
               </div>
-            </div>  
-           
-            <div className="col-xl-9 col-lg-8">Brak wyników</div>
-           
+            </div>        
             <Sidebar></Sidebar>
             </div>
           </div>

@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import GET_POSTS from '../queries/getPosts';
-// import Preloader from './Preloader';
+import Preloader from './Preloader';
 
 
 
@@ -17,13 +17,13 @@ const Posts = () =>  {
     edges
   } = posts || {};
 
-  if (loading) return (<p>Loading...</p>);
+  if (loading) return (<Preloader />);
   if (error) return (<p>Spróbuj ponownie.</p>);
   
     return (
       edges && edges.length > 0  ? 
-      edges.map(({node: {treWpisuBloga: {title, text, image: {sourceUrl}, tags}, uri}}) => 
-      <div key={''} className="col-xl-12 col-lg-6 col-md-6 col-12">
+      edges.map(({node: {treWpisuBloga: {title, text, image: {sourceUrl}, tags}, uri}}, index) => 
+      <div key={index} className="col-xl-12 col-lg-6 col-md-6 col-12">
         <div className="blog-box-layout5">
           <div className="media media-none--lg">
             <div className="item-img">
@@ -33,7 +33,7 @@ const Posts = () =>  {
               <ul className="entry-meta">
                 <li>{''}</li>
                 <li>
-                {tags.map((tag, i) => <a key={i} href="/">{tag.__typename}</a>)}
+                {tags.map((tag, i) => <a key={i} href="/">{tag.name}</a>)}
                 </li>
               </ul>
               <h3 className="item-title"><Link to={`/blog/${uri}`}>{title}</Link></h3>

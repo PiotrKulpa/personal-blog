@@ -57,13 +57,13 @@ class TopSlider extends Component {
           <div className="slider-area slider-layout1 slider-top-margin95">
             <SlickSlider {...settings}>
               <div>
-                <img src="/img/slider/slide2-1.jpg" />
+                <img src="/img/slider/slide2-1.jpg" alt=""/>
               </div>
               <div>
-              <img src="/img/slider/slide2-2.jpg" />
+              <img src="/img/slider/slide2-2.jpg"  alt=""/>
               </div>
               <div>
-              <img src="/img/slider/slide2-3.jpg" />
+              <img src="/img/slider/slide2-3.jpg"  alt=""/>
               </div>
           </SlickSlider>
           </div>

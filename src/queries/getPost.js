@@ -4,14 +4,16 @@ const GET_POST = gql`
 query GET_POST($uri: String) {
   postBy(uri: $uri) {
       treWpisuBloga {
-         
+          date
           title
           text
           image {
             sourceUrl
           }
-          tags{
-            __typename
+          tags {
+            ... on Tag{
+              name
+            }
           }
         }
     id

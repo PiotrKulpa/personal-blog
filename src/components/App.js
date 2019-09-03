@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import './App.css';
 import Menu from './Menu';
 import Home from './Home';
 import Blog from './Blog';
@@ -8,8 +7,6 @@ import Contact from './Contact';
 import NotFound from './NotFound';
 import Footer from './Footer';
 import { Route, Switch, } from 'react-router-dom';
-import Preloader from './Preloader';
-
 
 class App extends Component {
 
@@ -17,9 +14,6 @@ class App extends Component {
     return (
         
       <div id="wrapper" className="wrapper">
-
-      {/* PRELOADER */}
-      {/* <Preloader /> */}
 
       {/* LOGO */}
       <div>LOGO</div>
