@@ -3,43 +3,60 @@ import { NavLink } from 'react-router-dom';
 import Breadcrumbs from './Breadcrumbs';
 import Sidebar from './Sidebar';
 import { useQuery } from '@apollo/react-hooks';
-import GET_POSTS from '../queries/getPosts';
+import GET_POST from '../queries/getPost';
 
 
-const Post = () => {
+const Post = (props) => {
 
   
-  const { loading, error, data } = useQuery(GET_POSTS);
+  const{id} = props.match.params;
+ 
+  
+  const { loading, error, data } = useQuery(GET_POST, {
+    variables: {
+      uri: id
+    }
+  });
   
   const{
-    posts
+    postBy
   } = data || {};
   const{
-    edges
-  } = posts || {};
+    treWpisuBloga
+  } = postBy || {};
+  const{
+    title, text, image
+  } = treWpisuBloga || {};
 
-  console.log(edges);
-  
+  const goBack = () => {
+
+  };
+
+  console.log(image);
+
+  if (loading) return (<p>Loading...</p>);
+  if (error) return (<p>Spróbuj ponownie.</p>);
+
     return ( 
     <>
     <Breadcrumbs />  
     <section className="single-blog-wrap-layout1">
       <div className="container">
           <div className="row">
-          { this.props.post && this.props.post.length > 0 ? this.props.post.map((el) => 
-            <div key={el.id} className="col-xl-9 col-lg-8">
+          
+            <div className="col-xl-9 col-lg-8">
               <div className="single-blog-box-layout1">
                 <div className="blog-img">
-                  <img src={el.acf.image.sizes.large} alt="blog" />
+                  <img src={image.sourceUrl} alt="blog" />
                 </div>
                 <div className="blog-content">
-                  <ul className="entry-meta">
+                  {/* <ul className="entry-meta">
                     <li>{el.acf.date}</li>
                     <li>
                       {el.acf.tags.map((tag, i) => <a key={i} href="/">{tag.name}</a>)}
                     </li>
-                  </ul>
-                  <h2 className="blog-title">{el.acf.title}</h2>
+                  </ul> */}
+                  <h2 className="blog-title">{title}</h2>
                   <ul className="post-action">
                     <li>
                       <div className="media media-none--xs">
@@ -50,7 +67,7 @@ const Post = () => {
                       </div>
                     </li>
                   </ul>
-                  <p dangerouslySetInnerHTML={{__html: el.acf.text}} />
+                  <p dangerouslySetInnerHTML={{__html: text}} />
                 </div>
                 <div className="row">
                   <div className="col-sm-6">
@@ -72,13 +89,13 @@ const Post = () => {
                 
                 
                 <div className="pagination-layout1 margin-b-30">
-                <button className="item-back-btn" onClick={this.goBack}><i className="flaticon-back"></i> Wróć do wpisów</button>
+                <button className="item-back-btn" onClick={goBack}><i className="flaticon-back"></i> Wróć do wpisów</button>
                 </div>
               </div>
             </div>  
-            ) : (
+           
             <div className="col-xl-9 col-lg-8">Brak wyników</div>
-            )}
+           
             <Sidebar></Sidebar>
             </div>
           </div>
@@ -86,7 +103,5 @@ const Post = () => {
         </>
     )
 }
-
-
 
 export default memo(Post);
