@@ -1,56 +1,27 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { showPost } from '../actions';
-import { fetchPosts } from '../actions';
-
+import React, { memo } from 'react';
 import { NavLink } from 'react-router-dom';
-
 import Breadcrumbs from './Breadcrumbs';
 import Sidebar from './Sidebar';
+import { useQuery } from '@apollo/react-hooks';
+import GET_POSTS from '../queries/getPosts';
 
 
-//TODO: manualy inseted number of post
-//TODO: clear previous post
-//TODO: no loader, wrong path
+const Post = () => {
 
-class Post extends Component {
+  
+  const { loading, error, data } = useQuery(GET_POSTS);
+  
+  const{
+    posts
+  } = data || {};
+  const{
+    edges
+  } = posts || {};
 
-  constructor(props){
-    super(props);
-    this.goBack = this.goBack.bind(this);
-  }
-
-  goBack() {
-    this.props.history.goBack();
-  }
- 
-
-  componentDidMount() {
-    window.scrollTo(0, 0);
-    // if (this.props.blogData === false) {
-    //   this.props.fetchPosts()
-    //   .then(() => this.props.showPost(this.props.match.params.id));
-    // } else {
-    this.props.showPost(this.props.match.params.id)
-    // }
-    
-  }
-
-  renderPost() {
-
-    return this.props.post.map(el => {
-      return (
-        <div key={el.id}>
-          <h1>{el.title.rendered}</h1>
-          <p dangerouslySetInnerHTML={{ __html: el.content.rendered }} />
-        </div>
-      )
-    })
-  }
-
-  render() {
+  console.log(edges);
+  
     return ( 
-    <React.Fragment>
+    <>
     <Breadcrumbs />  
     <section className="single-blog-wrap-layout1">
       <div className="container">
@@ -112,17 +83,10 @@ class Post extends Component {
             </div>
           </div>
         </section>  
-        </React.Fragment>
-    )}
+        </>
+    )
 }
 
-const mapStateToProps = state => {
-  console.log('POST STATE: ' + state);
-  return {
-    post: state.posts.post,
-    showLoader: state.showLoader,
-    blogData: state.blogDataFlag,
-  };
-}
 
-export default connect(mapStateToProps, { showPost, fetchPosts })(Post);
+
+export default memo(Post);

@@ -1,19 +1,10 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 
-class Preloader extends Component {
-  render() {
+const Preloader = () => {
     return (
-      <div id="preloader" style={{display: this.props.showLoader}}></div>
+      <div id="preloader" ></div>
     )
-  }
 }
 
-const mapStateToProps = state => {
-  return {
-    showLoader: state.showLoader
-  };
-}
-
-export default connect(mapStateToProps)(Preloader);
+export default Preloader;
 

@@ -19,7 +19,7 @@ class App extends Component {
       <div id="wrapper" className="wrapper">
 
       {/* PRELOADER */}
-      <Preloader />
+      {/* <Preloader /> */}
 
       {/* LOGO */}
       <div>LOGO</div>
@@ -33,7 +33,7 @@ class App extends Component {
            <Route exact path="/" component={Home} />
            <Route exact path="/blog" component={Blog} />
            <Route exact path="/szukaj/:id" component={Blog} />
-           <Route exact path="/blog/wpis/:id" component={Post} />
+           <Route exact path="/blog/:id" component={Post} />
            <Route exact path="/kontakt" component={Contact} />
            <Route component={NotFound} />
          </Switch>
