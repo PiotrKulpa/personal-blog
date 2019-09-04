@@ -1,19 +1,15 @@
-//TODO actions/reducers for search by
-// category
-// tags
-// archives
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { searchPosts, sortByCategory } from '../actions';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Search from './Search';
 
 
 class Sidebar extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {searchValue: ''};
+    this.state = { searchValue: '' };
 
     this.onSearch = this.onSearch.bind(this);
     this.onCategory = this.onCategory.bind(this);
@@ -25,10 +21,10 @@ class Sidebar extends Component {
     let tempVal = event.target.value;
     clearTimeout(this.searchTimer);
     this.searchTimer = setTimeout(() => {
-     //console.log(tempVal);
-     this.props.searchPosts(tempVal)
+      //console.log(tempVal);
+      this.props.searchPosts(tempVal)
     }
-    , 1000)
+      , 1000)
   }
 
   onCategory(e) {
@@ -38,29 +34,19 @@ class Sidebar extends Component {
   render() {
     return (
       <div className="col-xl-3 col-lg-4 col-12 sidebar-widget-area sidebar-break-md">
-        <div className="widget widget-search-box">
-          <div className="input-group stylish-input-group">
-            <input onChange={(e) => this.onSearch(e)} type="text" className="form-control" placeholder="Search here . . ." />
-            <span className="input-group-addon">
-              <button onClick={this.onSearch} type="submit">
-                <span className="flaticon-search" aria-hidden="true"></span>
-              </button>
-              { this.state.searchValue !== '' && <Redirect to={'/search/' + this.state.searchValue}/>}
-            </span>
-          </div>
-        </div>
+        <Search />
         <div className="widget widget-category">
           <div className="section-header header-dark heading-layout3">
             <h3>Kategorie</h3>
           </div>
           <ul>
-          { this.props.categories && this.props.categories.length > 0 ? this.props.categories.map((el, i) =>
-            <li key={i} onClick={() => this.onCategory(el.slug)}>
-              <Link href="#">
-                <i className="fas fa-angle-right"></i>{el.name}</Link>
-            </li>
-           ) : <p>Loading...</p>
-          }
+            {this.props.categories && this.props.categories.length > 0 ? this.props.categories.map((el, i) =>
+              <li key={i} onClick={() => this.onCategory(el.slug)}>
+                <Link href="#">
+                  <i className="fas fa-angle-right"></i>{el.name}</Link>
+              </li>
+            ) : <p>Loading...</p>
+            }
           </ul>
         </div>
         <div className="widget widget-recent-blog">
@@ -184,4 +170,4 @@ const mapStateToProps = state => {
   };
 }
 
-export default connect(mapStateToProps, {searchPosts, sortByCategory})(Sidebar);
+export default connect(mapStateToProps, { searchPosts, sortByCategory })(Sidebar);

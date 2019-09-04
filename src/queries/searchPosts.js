@@ -1,14 +1,8 @@
 import gql from 'graphql-tag';
 
-const GET_POSTS = gql`
-  query GET_POSTS ($first: Int, $after: String) {
-    posts (first: $first, after: $after) {
-      pageInfo{
-        startCursor
-        endCursor
-        hasNextPage
-        hasPreviousPage
-      }
+const SEARCH_POSTS = gql`
+  query SEARCH_POSTS ($searchQuery: String) {
+    posts (where: {search: $searchQuery}) {
       edges {
         node {
           title
@@ -34,8 +28,8 @@ const GET_POSTS = gql`
           uri
         }
       }
-    }
+ }
   }
 `;
 
-export default GET_POSTS;
+export default SEARCH_POSTS;

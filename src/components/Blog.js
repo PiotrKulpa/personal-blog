@@ -1,31 +1,32 @@
-import React, { Component } from 'react';
+import React, { memo } from 'react';
 import Sidebar from './Sidebar';
 import Pagination from './Pagination';
 import Breadcrumbs from './Breadcrumbs';
 import Posts from './Posts';
+import SearchResult from './SearchResult';
 
-class Blog extends Component {
+const Blog = (props) => {
 
-  render() {
-    return (
-      <React.Fragment>
-        <Breadcrumbs />
-        <section className="blog-wrap-layout4">
-          <div className="container">
-            <div className="row">
-              <div className="col-xl-9 col-lg-8">
-                <div className="row">
-                  <Posts />
-                </div>
-                <Pagination />
+  const{path} = props.match;
+  
+  return (
+    <>
+      <Breadcrumbs />
+      <section className="blog-wrap-layout4">
+        <div className="container">
+          <div className="row">
+            <div className="col-xl-9 col-lg-8">
+              <div className="row">
+               { path === '/blog' ? <Posts /> : <SearchResult />}
               </div>
-                <Sidebar />
+              <Pagination />
             </div>
+            <Sidebar />
           </div>
-        </section>
-      </React.Fragment>
-    );
-  }
+        </div>
+      </section>
+    </>
+  );
 }
 
-export default Blog;
+export default memo(Blog);

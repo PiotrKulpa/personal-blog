@@ -7,11 +7,7 @@ import Preloader from './Preloader';
 
 
 const Post = (props) => {
-
-  
   const{id} = props.match.params;
- 
-  
   const { loading, error, data } = useQuery(GET_POST, {
     variables: {
       uri: id
@@ -22,24 +18,16 @@ const Post = (props) => {
     postBy
   } = data || {};
   const{
-    treWpisuBloga
+    title, content, tags, date, featuredImage
   } = postBy || {};
-  const{
-    title, text, image, tags, date
-  } = treWpisuBloga || {};
-
-  console.log(data);
-  
 
   const goBack = () => {
-
+    props.history.goBack();
   };
-
-  console.log(image);
 
   if (loading) return (<Preloader />);
   if (error) return (<p>Spróbuj ponownie.</p>);
-
+  console.log(data);
     return ( 
     <>
     <Breadcrumbs />  
@@ -50,13 +38,13 @@ const Post = (props) => {
             <div className="col-xl-9 col-lg-8">
               <div className="single-blog-box-layout1">
                 <div className="blog-img">
-                  <img src={image.sourceUrl} alt="blog" />
+                  <img src={featuredImage.sourceUrl} alt="blog" />
                 </div>
                 <div className="blog-content">
                   <ul className="entry-meta">
                     <li>{date}</li>
                     <li>
-                      {tags.map((tag, i) => <a key={i} href="/">{tag.name}</a>)}
+                      {tags.edges.map(({ node }, i) => <a key={i} href="/">{node.name}</a>)}
                     </li>
                   </ul>
                   <h2 className="blog-title">{title}</h2>
@@ -70,7 +58,7 @@ const Post = (props) => {
                       </div>
                     </li>
                   </ul>
-                  <p dangerouslySetInnerHTML={{__html: text}} />
+                  <p dangerouslySetInnerHTML={{__html: content}} />
                 </div>
                 <div className="row">
                   <div className="col-sm-6">
