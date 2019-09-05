@@ -3,12 +3,18 @@ import { NavLink, Link } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import GET_POSTS from '../queries/getPosts';
 import Preloader from './Preloader';
+import { useDispatch } from 'react-redux';
+import { withRouter } from 'react-router-dom'
 
-const Posts = () => {
+const Posts = (props) => {
+  const dispatch = useDispatch();
+  const { id } = props.match.params;
+ 
   const { loading, error, data } = useQuery(GET_POSTS, {
     variables: {
       first: 5,
-      after: null
+      after: id || null,
+      before: id || null,  
     }
   });
 
@@ -16,13 +22,15 @@ const Posts = () => {
     posts
   } = data || {};
   const {
-    edges
+    edges, pageInfo,
   } = posts || {};
+
+  
 
   if (loading) return (<Preloader />);
   if (error) return (<p>Spróbuj ponownie.</p>);
   if (!posts.edges.length) return <p>Nie znaleziono wpisów.</p>;
-
+  dispatch({type: 'UPDATE_POSTS_INFO', payload: pageInfo})
   return (
     edges && edges.length > 0 ?
       edges.map(({ node: { title, content, featuredImage: { sourceUrl }, tags: { edges }, uri } }, index) =>
@@ -54,4 +62,4 @@ const Posts = () => {
   )
 }
 
-export default memo(Posts);
+export default withRouter(memo(Posts));

@@ -17,7 +17,7 @@ const Blog = (props) => {
           <div className="row">
             <div className="col-xl-9 col-lg-8">
               <div className="row">
-               { path === '/blog' ? <Posts /> : <SearchResult />}
+               { path === '/blog' || path === '/blog/strona/:id' ? <Posts /> : <SearchResult />}
               </div>
               <Pagination />
             </div>

@@ -10,6 +10,7 @@ const GET_POSTS = gql`
         hasPreviousPage
       }
       edges {
+        cursor
         node {
           title
           content

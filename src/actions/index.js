@@ -1,6 +1,19 @@
 import wpInitRestApi from '../api/wpInitRestApi';
+import GET_POSTS from '../queries/getPosts';
 
 let currentRange = 1;
+
+export const getPosts = () => (dispatch, {client}) => {
+  client.query({
+    query: GET_POSTS,
+    variables: {
+      first: 5,
+      after: null
+    },
+    cache: 'no-cache'
+  })
+  .then((data) => dispatch({type: 'SET_POSTS', payload: data}));
+}
 
 export const fetchPosts = () => dispatch => {
 

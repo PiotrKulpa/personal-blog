@@ -10,10 +10,29 @@ const initState = {
   post: [],
   pagination: [],
   categories: [],
+  blogData: {
+    first: 5,
+    startCursor: null,
+    endCursor: null,
+    hasNextPage: false,
+    hasPreviousPage: false,
+  }
+}
+
+const blogReducer = (state = initState, action) => {
+  switch (action.type) {
+    case 'UPDATE_POSTS_INFO':
+      return {
+        ...state,
+        blogData: action.payload
+      };
+    default:
+      return state;
+  }
 }
 
 const postsReducer = (state = initState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case 'FETCH_POSTS':
       return {
         ...state,
@@ -21,7 +40,7 @@ const postsReducer = (state = initState, action) => {
         search: action.payload.posts,
         blog: action.payload.posts.slice(0, postPerPage),
         pagination: pagination(action.payload.posts.length, postPerPage),
-        categories: action.payload.posts.map(el => el.acf.categories[0] ).filter((v,i) => action.payload.posts.map(el => el.acf.categories[0].term_id ).indexOf(v.term_id) === i),  
+        categories: action.payload.posts.map(el => el.acf.categories[0]).filter((v, i) => action.payload.posts.map(el => el.acf.categories[0].term_id).indexOf(v.term_id) === i),
       };
     case 'RESET_POSTS':
       return {
@@ -29,13 +48,13 @@ const postsReducer = (state = initState, action) => {
         blog: state.default.slice(0, postPerPage),
         pagination: pagination(state.default.length, postPerPage),
       };
-    
+
     case 'PAGINATE_POSTS':
       return {
         ...state,
         blog: state.search.slice(action.payload.min, action.payload.max),
       };
-    
+
     case 'SEARCH_POSTS':
       return {
         ...state,
@@ -53,22 +72,22 @@ const postsReducer = (state = initState, action) => {
       };
 
     case 'SHOW_POST':
-      return {...state, post: state.default.filter(el => el.id === Number(action.payload))};
+      return { ...state, post: state.default.filter(el => el.id === Number(action.payload)) };
 
     case 'SHOW_MORE':
-      return  {...state, blog: [...state.blog, ...action.payload.posts]};
+      return { ...state, blog: [...state.blog, ...action.payload.posts] };
 
     case 'SORT_POSTS_NEWEST':
-      return {...state, blog: _.orderBy(state.blog, ['date'], ['desc'])};
+      return { ...state, blog: _.orderBy(state.blog, ['date'], ['desc']) };
 
     case 'SORT_POSTS_OLDEST':
-      return {...state, blog: _.orderBy(state.blog, ['date'], ['asc'])};
+      return { ...state, blog: _.orderBy(state.blog, ['date'], ['asc']) };
 
     case 'SORT_POSTS_ASC':
-      return {...state, blog: _.orderBy(state.blog, ['title.rendered'], ['asc'])};
+      return { ...state, blog: _.orderBy(state.blog, ['title.rendered'], ['asc']) };
 
     case 'SORT_POSTS_DESC':
-      return {...state, blog: _.orderBy(state.blog, ['title.rendered'], ['desc'])};
+      return { ...state, blog: _.orderBy(state.blog, ['title.rendered'], ['desc']) };
 
     default:
       return state;
@@ -76,7 +95,7 @@ const postsReducer = (state = initState, action) => {
 };
 
 const showLoaderReducer = (state = 'none', action) => {
-  switch(action.type) {
+  switch (action.type) {
     case 'SHOW_LOADER':
       return action.payload;
     default:
@@ -85,7 +104,7 @@ const showLoaderReducer = (state = 'none', action) => {
 };
 
 const showFlagReducer = (state = false, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case 'SET_FLAG':
       return action.payload;
     default:
@@ -97,5 +116,6 @@ const showFlagReducer = (state = false, action) => {
 export default combineReducers({
   posts: postsReducer,
   blogDataFlag: showFlagReducer,
-  showLoader: showLoaderReducer
+  showLoader: showLoaderReducer,
+  blogReducer
 });
