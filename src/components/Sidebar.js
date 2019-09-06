@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { searchPosts, sortByCategory } from '../actions';
 import { Link } from 'react-router-dom';
 import Search from './Search';
 
@@ -164,10 +162,4 @@ class Sidebar extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    categories: state.posts.categories,
-  };
-}
-
-export default connect(mapStateToProps, { searchPosts, sortByCategory })(Sidebar);
+export default Sidebar;

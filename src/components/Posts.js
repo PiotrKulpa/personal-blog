@@ -1,21 +1,41 @@
-import React, { memo } from 'react';
+import React, { memo, useMemo } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import GET_POSTS from '../queries/getPosts';
 import Preloader from './Preloader';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 
 const Posts = (props) => {
   const dispatch = useDispatch();
+  const pagDirection = useSelector(({blogReducer}) => blogReducer.pagDirection);
+  const first = useSelector(({blogReducer}) => blogReducer.first);
   const { id } = props.match.params;
+
+  const setPaginationdata = useMemo(() => {
+    if(id && pagDirection === 'next') {
+      return {
+        first,
+        after: id,
+        before: null,  
+      }
+    } else if(id && pagDirection === 'previous') {
+      return {
+        first,
+        after: null,
+        before: id,  
+      }
+    } else {
+      return {
+        first,
+        after: null,
+        before: null,  
+      }
+    }
+  }, [id, pagDirection])
  
   const { loading, error, data } = useQuery(GET_POSTS, {
-    variables: {
-      first: 5,
-      after: id || null,
-      before: id || null,  
-    }
+    variables: setPaginationdata
   });
 
   const {
@@ -30,7 +50,9 @@ const Posts = (props) => {
   if (loading) return (<Preloader />);
   if (error) return (<p>Spróbuj ponownie.</p>);
   if (!posts.edges.length) return <p>Nie znaleziono wpisów.</p>;
-  dispatch({type: 'UPDATE_POSTS_INFO', payload: pageInfo})
+  dispatch({type: 'UPDATE_POSTS_INFO', payload: pageInfo});
+  
+  
   return (
     edges && edges.length > 0 ?
       edges.map(({ node: { title, content, featuredImage: { sourceUrl }, tags: { edges }, uri } }, index) =>
