@@ -8,12 +8,7 @@ const TestPosts = () => {
   const { error, data } = useQuery(GET_TEST_POSTS, { errorPolicy: 'all' });
   if (error) console.log(JSON.stringify(error));
   console.log(data);
-    return ( 
-      <>
-      <AboutUs />
-      
-      </>
-    )
+    return <AboutUs />
 }
 
 export default memo(TestPosts);
