@@ -321,3 +321,10 @@ require get_template_directory() . '/inc/template-tags.php';
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
+
+
+function add_cors_http_header(){
+  header("Access-Control-Allow-Origin: *");
+}
+
+add_action('init','add_cors_http_header');

@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { memo } from 'react';
 import SlickSlider from "react-slick";
 
-export default class HappyClients extends Component {
-  render() {
+const HappyClients = () => {
+ 
     var settings = {
       dots: true,
       infinite: true,
@@ -47,5 +47,6 @@ export default class HappyClients extends Component {
         </div>
       </section>
     )
-  }
 }
+
+export default memo(HappyClients);

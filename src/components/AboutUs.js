@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React, { memo } from 'react';
 
-export default class AboutUs extends Component {
-  render() {
+const AboutUs = () => {
     return (
       <section className="about-wrap-layout1">
           <div className="container">
@@ -22,5 +21,6 @@ export default class AboutUs extends Component {
           </div>
       </section>
     )
-  }
 }
+
+export default memo(AboutUs);
