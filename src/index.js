@@ -22,7 +22,7 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 //     .then((res) => console.log(JSON.stringify(res, 0, 2)))
 
 const httpLink = createHttpLink({
-  uri: 'http://jsykutdev.pl/graphql',
+  uri: 'http://www.jsykut.type.pl/wp/graphql',
 });
 
 const client = new ApolloClient({
