@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from 'react';
+import React, { memo, useMemo, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import GET_POSTS from '../queries/getPosts';
@@ -11,22 +11,26 @@ const Posts = (props) => {
   const dispatch = useDispatch();
   const pagDirection = useSelector(({ blogReducer }) => blogReducer.pagDirection);
   const first = useSelector(({ blogReducer }) => blogReducer.first);
+  const endCursor = useSelector(({ blogReducer }) => blogReducer.blogData.endCursor);
+  const startCursor = useSelector(({ blogReducer }) => blogReducer.blogData.startCursor);
   const { id } = props.match.params;
+  
 
   const setPaginationdata = useMemo(() => {
-    if (id && pagDirection === 'next') {
+    if (pagDirection === 'next') {
       return {
         first,
-        after: id,
-        before: null,
+        after: endCursor,
       }
-    } else if (id && pagDirection === 'previous') {
+    } else if (pagDirection === 'previous') {
+      //TODO: bug move this logic to pagination and update reducer
+      
       return {
-        first,
-        after: null,
-        before: id,
+        last: first,
+        before: startCursor,
       }
     } else {
+     //TODO: bug 
       return {
         first,
         after: null,
@@ -36,7 +40,7 @@ const Posts = (props) => {
   }, [id, pagDirection])
 
   const { loading, error, data } = useQuery(GET_POSTS, {
-    variables: setPaginationdata
+    variables: setPaginationdata,
   });
 
   const {
@@ -46,10 +50,17 @@ const Posts = (props) => {
     edges, pageInfo,
   } = posts || {};
 
+  console.log(pageInfo);
+  
+
+  useEffect(() => {
+    if(pageInfo) dispatch({ type: 'UPDATE_POSTS_INFO', payload: pageInfo });
+  });
+
   if (loading) return (<Preloader />);
   if (error) return (<p>Spróbuj ponownie.</p>);
   if (!posts.edges.length) return <p>Nie znaleziono wpisów.</p>;
-  dispatch({ type: 'UPDATE_POSTS_INFO', payload: pageInfo });
+  
 
   return (
     edges && edges.length > 0 ?

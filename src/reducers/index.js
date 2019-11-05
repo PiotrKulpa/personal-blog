@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 
 const initState = {
   first: 5,
-  pagDirection: 'next',
+  pagDirection: '',
   blogData: {
     startCursor: null,
     endCursor: null,

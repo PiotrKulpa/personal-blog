@@ -6,6 +6,11 @@ import { useSelector, useDispatch } from 'react-redux';
 const Pagination = () => {
   const dispatch = useDispatch();
   const blogData = useSelector(({blogReducer}) => blogReducer.blogData);
+  const hasNextPage = useSelector(({ blogReducer }) => blogReducer.blogData.hasNextPage);
+  const hasPreviousPage = useSelector(({ blogReducer }) => blogReducer.blogData.hasPreviousPage);
+
+  console.log(hasPreviousPage);
+  
 
   const goNext = () => {
     dispatch({type: 'UPDATE_PAG_INFO', payload: 'next'});
@@ -22,11 +27,11 @@ const Pagination = () => {
             flexDirection: 'row',
             justifyContent: 'space-between',
       }}>
-        <li onClick={goBack}>
+        <li onClick={goBack} style={{pointerEvents: hasPreviousPage ? 'all' : 'all'}}>
           <Link to={`/blog/strona/${blogData.startCursor}`} >Poprzednia strona</Link>
         </li>
-        <li onClick={goNext}>
-          <Link to={`/blog/strona/${blogData.endCursor}`} disabled={true}>Następna strona</Link>
+        <li onClick={goNext} style={{pointerEvents: hasNextPage ? 'all' : 'none'}}>
+          <Link to={`/blog/strona/${blogData.endCursor}`} >Następna strona</Link>
         </li>
       </ul>
     </div>

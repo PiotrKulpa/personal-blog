@@ -13,16 +13,8 @@ import { ApolloProvider } from "react-apollo";
 import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from "apollo-cache-inmemory";
 
-//TODO: only for cors test - remove in prod 
-// fetch("http://cors.anna-domicela-niemiec.pl/wp/wp-json/wp/v2/posts")
-//     .then(resp => {
-//         // console.log(resp.json());
-//         return resp.json()
-//     })
-//     .then((res) => console.log(JSON.stringify(res, 0, 2)))
-
 const httpLink = createHttpLink({
-  uri: 'http://jsykutdev.pl/graphql',
+  uri: 'http://34.83.9.122/graphql',
 });
 
 const client = new ApolloClient({
