@@ -1,27 +1,15 @@
 import { combineReducers } from 'redux';
 
 const initState = {
-  first: 5,
-  pagDirection: 'next',
-  blogData: {
-    startCursor: null,
-    endCursor: null,
-    hasNextPage: false,
-    hasPreviousPage: false,
-  }
-}
+  data: {}
+};
 
 const blogReducer = (state = initState, action) => {
   switch (action.type) {
-    case 'UPDATE_POSTS_INFO':
+    case 'UPDATE_POSTS':
       return {
         ...state,
-        blogData: action.payload
-      };
-    case 'UPDATE_PAG_INFO':
-      return {
-        ...state,
-        pagDirection: action.payload
+        data: action.payload
       };
     default:
       return state;

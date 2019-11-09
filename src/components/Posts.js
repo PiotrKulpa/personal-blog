@@ -1,58 +1,69 @@
-import React, { memo, useMemo } from 'react';
+import React, { memo, useMemo, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
-import GET_POSTS from '../queries/getPosts';
-import Preloader from './Preloader';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import stringSlicer from '../helpers/stringSlicer';
 
+import Preloader from './Preloader';
+import Blog from './Blog';
+
+
 const Posts = (props) => {
-  const dispatch = useDispatch();
-  const pagDirection = useSelector(({ blogReducer }) => blogReducer.pagDirection);
-  const first = useSelector(({ blogReducer }) => blogReducer.first);
-  const { id } = props.match.params;
+  // const dispatch = useDispatch();
+  const data = useSelector(({ blogReducer }) => blogReducer.data);
+  // const first = useSelector(({ blogReducer }) => blogReducer.first);
+  // const endCursor = useSelector(({ blogReducer }) => blogReducer.blogData.endCursor);
+  // const startCursor = useSelector(({ blogReducer }) => blogReducer.blogData.startCursor);
+  // const { id } = props.match.params;
 
-  const setPaginationdata = useMemo(() => {
-    if (id && pagDirection === 'next') {
-      return {
-        first,
-        after: id,
-        before: null,
-      }
-    } else if (id && pagDirection === 'previous') {
-      return {
-        first,
-        after: null,
-        before: id,
-      }
-    } else {
-      return {
-        first,
-        after: null,
-        before: null,
-      }
-    }
-  }, [id, pagDirection])
+  
 
-  const { loading, error, data } = useQuery(GET_POSTS, {
-    variables: setPaginationdata
-  });
+  // const setPaginationdata = useMemo(() => {
+  //   if (pagDirection === 'next') {
+  //     return {
+  //       first,
+  //       after: endCursor,
+  //     }
+  //   } else if (pagDirection === 'previous') {
+  //     //TODO: bug move this logic to pagination and update reducer
+      
+  //     return {
+  //       last: first,
+  //       before: startCursor,
+  //     }
+  //   } else {
+  //    //TODO: bug 
+  //     return {
+  //       first,
+  //       after: null,
+  //       before: null,
+  //     }
+  //   }
+  // }, [id, pagDirection])
 
   const {
     posts
   } = data || {};
   const {
-    edges, pageInfo,
+    edges,
   } = posts || {};
 
-  if (loading) return (<Preloader />);
-  if (error) return (<p>Spróbuj ponownie.</p>);
-  if (!posts.edges.length) return <p>Nie znaleziono wpisów.</p>;
-  dispatch({ type: 'UPDATE_POSTS_INFO', payload: pageInfo });
+  console.log(data);
+  
+
+  // useEffect(() => {
+  //   if(pageInfo) dispatch({ type: 'UPDATE_POSTS_INFO', payload: pageInfo });
+  // });
+
+  // if (loading) return (<Preloader />);
+  // if (error) return (<p>Spróbuj ponownie.</p>);
+  // if (!posts.edges.length) return <p>Nie znaleziono wpisów.</p>;
+  
 
   return (
-    edges && edges.length > 0 ?
+    <Blog>
+    {edges && edges.length > 0 ?
       edges.map(({ node: { title = '', content = '', featuredImage, tags, uri = '' } }, index) => {
         const { sourceUrl } = featuredImage || {}
         const { edges } = tags || {}
@@ -82,7 +93,8 @@ const Posts = (props) => {
       }
       )
       :
-      <p>Loading...</p>
+      <p>Loading...</p>}
+      </Blog>
   )
 }
 

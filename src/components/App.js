@@ -3,6 +3,7 @@ import Menu from './Menu';
 import Home from './Home';
 import Blog from './Blog';
 import Post from './Post';
+import Posts from './Posts';
 import Contact from './Contact';
 import NotFound from './NotFound';
 import Footer from './Footer';
@@ -25,10 +26,11 @@ const App = () => {
         {/* MAIN CONTENT */}
         <Switch>
            <Route exact path="/" component={Home} />
-           <Route exact path="/blog" component={Blog} />
-           <Route exact path="/blog/strona/:id" component={Blog} />
+           {/* zmien na osobne komponenty dla szukaj blog oraz blog/strona */}
+           <Route exact path="/blog" component={Posts} /> 
            <Route exact path="/szukaj/:id" component={Blog} />
            <Route exact path="/blog/:id" component={Post} />
+           <Route exact path="/blog/strona/" component={Posts} />
            <Route exact path="/kontakt" component={Contact} />
            <Route path="/test" component={TestPosts} />
            <Route component={NotFound} />

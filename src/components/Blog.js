@@ -7,7 +7,7 @@ import SearchResult from './SearchResult';
 
 const Blog = (props) => {
 
-  const{path} = props.match;
+  // const{path} = props.match;
   
   return (
     <>
@@ -17,7 +17,7 @@ const Blog = (props) => {
           <div className="row">
             <div className="col-xl-9 col-lg-8">
               <div className="row">
-               { path === '/blog' || path === '/blog/strona/:id' ? <Posts /> : <SearchResult />}
+               { props.children }
               </div>
               <Pagination />
             </div>
