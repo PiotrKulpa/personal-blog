@@ -13,9 +13,7 @@ const Pagination = (props) => {
   const {client} = props;
 
   const goNext = () => {
-    const{startCursor} = data.posts.pageInfo
     const{endCursor} = data.posts.pageInfo
-    console.log(startCursor, endCursor);
     
     client.query({
       query: GET_POSTS,
@@ -32,8 +30,6 @@ const Pagination = (props) => {
 
   const goBack = () => {
     const{startCursor} = data.posts.pageInfo
-    const{endCursor} = data.posts.pageInfo
-    console.log(startCursor, endCursor);
     
     client.query({
       query: GET_POSTS,

@@ -1,13 +1,11 @@
-import React, { memo, useMemo, useEffect } from 'react';
+import React, { memo } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { useQuery } from '@apollo/react-hooks';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import stringSlicer from '../helpers/stringSlicer';
 
 import Preloader from './Preloader';
 import Blog from './Blog';
-import GET_POSTS from '../queries/getPosts';
 
 
 const Posts = () => {
@@ -20,9 +18,6 @@ const Posts = () => {
     edges,
   } = posts || {};
 
-  console.log(blog);
-  
-
   return (
     <Blog>
     {edges && edges.length > 0 ?
@@ -34,7 +29,7 @@ const Posts = () => {
             <div className="blog-box-layout5">
               <div className="media media-none--lg">
                 <div className="item-img">
-                  <NavLink to={`/blog/${uri}`}><img src={sourceUrl || './img/placeholder.jpg'} alt="Blog" /></NavLink>
+                  <NavLink to={`/blog/${uri}`}><img src={sourceUrl || '/img/placeholder.jpg'} alt="Blog" /></NavLink>
                 </div>
                 <div className="media-body">
                   <ul className="entry-meta">
