@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 const GET_POSTS = gql`
-  query GET_POSTS ($first: Int, $after: String) {
-    posts (first: $first, after: $after) {
+  query GET_POSTS ($first: Int, $last: Int, $after: String, $before: String) {
+    posts (first: $first, last: $last, after: $after, before: $before) {
       pageInfo{
         startCursor
         endCursor

@@ -8,6 +8,7 @@ import stringSlicer from '../helpers/stringSlicer';
 import Preloader from './Preloader';
 import Blog from './Blog';
 import GET_POSTS from '../queries/getPosts';
+import postPerPage from '../helpers/postPerPage';
 
 const PostsDefault = () => {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ const PostsDefault = () => {
   } = posts || {};
 
   const { loading, error, data } = useQuery(GET_POSTS, {
-    variables: { first: 5 },
+    variables: { first: postPerPage },
   });
 
   useEffect(() => {

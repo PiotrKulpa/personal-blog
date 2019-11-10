@@ -20,7 +20,7 @@ const Posts = () => {
     edges,
   } = posts || {};
 
-  // console.log(blog);
+  console.log(blog);
   
 
   return (

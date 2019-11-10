@@ -1,9 +1,10 @@
-import React, { memo, useEffect} from 'react';
+import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { withApollo } from 'react-apollo';
 import { useSelector, useDispatch } from 'react-redux';
 
 import GET_POSTS from '../queries/getPosts';
+import postPerPage from '../helpers/postPerPage';
 
 
 const Pagination = (props) => {
@@ -12,14 +13,15 @@ const Pagination = (props) => {
   const {client} = props;
 
   const goNext = () => {
+    const{startCursor} = data.posts.pageInfo
     const{endCursor} = data.posts.pageInfo
-    console.log(endCursor);
+    console.log(startCursor, endCursor);
     
     client.query({
       query: GET_POSTS,
       variables: {
-        first: 5,
-        after: endCursor || null
+        first: postPerPage,
+        after: endCursor
       }
     })
     .then((data) => {
@@ -29,16 +31,22 @@ const Pagination = (props) => {
   }
 
   const goBack = () => {
-    dispatch({type: 'UPDATE_PAG_INFO', payload: 'previous'});
-  }
-  
-  // useEffect(() => {
-  //   console.log(data);
+    const{startCursor} = data.posts.pageInfo
+    const{endCursor} = data.posts.pageInfo
+    console.log(startCursor, endCursor);
     
-  //   dispatch({type: 'UPDATE_POSTS', payload: data});
-  // }, [dispatch] );
-
-  //style={{pointerEvents: hasPreviousPage ? 'all' : 'all'}}
+    client.query({
+      query: GET_POSTS,
+      variables: {
+        last: postPerPage,
+        before: startCursor
+      }
+    })
+    .then((data) => {
+      dispatch({type: 'UPDATE_POSTS', payload: data.data});
+    })
+    .catch((err) => console.log(err))
+  }
 
   return (
     <div className="pagination-layout2 margin-b-30">
