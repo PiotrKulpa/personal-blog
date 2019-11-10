@@ -2,31 +2,41 @@ import React, { memo, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { withApollo } from 'react-apollo';
 import { useSelector, useDispatch } from 'react-redux';
-import { useLazyQuery, useQuery } from '@apollo/react-hooks';
 
 import GET_POSTS from '../queries/getPosts';
 
 
-const Pagination = () => {
+const Pagination = (props) => {
   const dispatch = useDispatch();
-  const [getPosts, { called, loading, data= {} }] = useLazyQuery(GET_POSTS,
-    { variables: { first: 5} }
-    );
-console.log(data);
-
+  const data = useSelector(({ blogReducer }) => blogReducer.data);
+  const {client} = props;
 
   const goNext = () => {
-    getPosts();
+    const{endCursor} = data.posts.pageInfo
+    console.log(endCursor);
     
+    client.query({
+      query: GET_POSTS,
+      variables: {
+        first: 5,
+        after: endCursor || null
+      }
+    })
+    .then((data) => {
+      dispatch({type: 'UPDATE_POSTS', payload: data.data});
+    })
+    .catch((err) => console.log(err))
   }
 
   const goBack = () => {
     dispatch({type: 'UPDATE_PAG_INFO', payload: 'previous'});
   }
   
-  useEffect(() => {
-    dispatch({type: 'UPDATE_POSTS', payload: data});
-  }, [dispatch, data] );
+  // useEffect(() => {
+  //   console.log(data);
+    
+  //   dispatch({type: 'UPDATE_POSTS', payload: data});
+  // }, [dispatch] );
 
   //style={{pointerEvents: hasPreviousPage ? 'all' : 'all'}}
 
@@ -38,10 +48,10 @@ console.log(data);
             justifyContent: 'space-between',
       }}>
         <li onClick={goBack} >
-          <Link to={`/blog`} >Poprzednia strona</Link>
+          <Link to={`/blog/strona`} >Poprzednia strona</Link>
         </li>
         <li onClick={goNext} >
-          <Link to={`/blog`} >Następna strona</Link>
+          <Link to={`/blog/strona`} >Następna strona</Link>
         </li>
       </ul>
     </div>

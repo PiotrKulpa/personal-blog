@@ -1,4 +1,4 @@
-import React, { memo, useMemo, useEffect } from 'react';
+import React, { memo, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,18 +9,28 @@ import Preloader from './Preloader';
 import Blog from './Blog';
 import GET_POSTS from '../queries/getPosts';
 
-
-const Posts = () => {
+const PostsDefault = () => {
+  const dispatch = useDispatch();
   const blog = useSelector(({ blogReducer }) => blogReducer.data);
 
   const {
     posts
   } = blog || {};
   const {
-    edges,
+    edges = [],
   } = posts || {};
 
-  // console.log(blog);
+  const { loading, error, data } = useQuery(GET_POSTS, {
+    variables: { first: 5 },
+  });
+
+  useEffect(() => {
+    dispatch({type: 'UPDATE_POSTS', payload: data});
+  }, [dispatch, data] );
+
+  if (loading) return (<Preloader />);
+  if (error) return (<p>Spróbuj ponownie.</p>);
+  // if (posts.edges && !posts.edges.length) return <p>Nie znaleziono wpisów.</p>;
   
 
   return (
@@ -60,4 +70,4 @@ const Posts = () => {
   )
 }
 
-export default withRouter(memo(Posts));
+export default withRouter(memo(PostsDefault));
