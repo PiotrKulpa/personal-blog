@@ -13,6 +13,7 @@ import postPerPage from '../helpers/postPerPage';
 const PostsDefault = () => {
   const dispatch = useDispatch();
   const blog = useSelector(({ blogReducer }) => blogReducer.data);
+  const blogReducer = useSelector(({ blogReducer }) => blogReducer);
 
   const {
     posts
@@ -26,14 +27,16 @@ const PostsDefault = () => {
   });
 
   useEffect(() => {
+    const { posts: {pageInfo : { startCursor = '' } = {}} = {} } = data;
     dispatch({type: 'UPDATE_POSTS', payload: data});
-  }, [dispatch, data] );
+    dispatch({type: 'DEFAULT_MARKER', payload: startCursor});
+    console.log(blogReducer);
+  }, [dispatch, data,] );
 
   if (loading) return (<Preloader />);
-  if (error) return (<p>Spróbuj ponownie.</p>);
+  // if (error) return (<p>Spróbuj ponownie.</p>);
   // if (posts.edges && !posts.edges.length) return <p>Nie znaleziono wpisów.</p>;
   
-
   return (
     <Blog>
     {edges && edges.length > 0 ?
@@ -45,7 +48,7 @@ const PostsDefault = () => {
             <div className="blog-box-layout5">
               <div className="media media-none--lg">
                 <div className="item-img">
-                  <NavLink to={`/blog/${uri}`}><img src={sourceUrl || './img/placeholder.jpg'} alt="Blog" /></NavLink>
+                  <NavLink to={`/blog/${uri}`}><img src={sourceUrl || '/img/placeholder.jpg'} alt="Blog" /></NavLink>
                 </div>
                 <div className="media-body">
                   <ul className="entry-meta">

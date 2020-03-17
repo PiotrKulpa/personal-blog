@@ -28,10 +28,10 @@ const App = () => {
         <Switch>
            <Route exact path="/" component={Home} />
            {/* zmien na osobne komponenty dla szukaj blog oraz blog/strona */}
-           <Route exact path="/blog" component={PostsDefault} /> 
+           <Route path="/blog" component={PostsDefault} /> 
            <Route exact path="/szukaj/:id" component={Blog} />
            {/* <Route exact path="/blog/:id" component={Post} /> */}
-           <Route exact path="/blog/strona" component={Posts} />
+           {/* <Route exact path="/blog/strona" component={Posts} /> */}
            <Route exact path="/kontakt" component={Contact} />
            <Route path="/test" component={TestPosts} />
            <Route component={NotFound} />

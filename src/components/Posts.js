@@ -10,7 +10,7 @@ import Blog from './Blog';
 
 const Posts = () => {
   const blog = useSelector(({ blogReducer }) => blogReducer.data);
-
+  
   const {
     posts
   } = blog || {};

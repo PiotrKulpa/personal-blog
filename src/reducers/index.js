@@ -1,7 +1,10 @@
 import { combineReducers } from 'redux';
 
 const initState = {
-  data: {}
+  data: {},
+  defaultMarker: '',
+  loading: false,
+  error: false,
 };
 
 const blogReducer = (state = initState, action) => {
@@ -10,6 +13,16 @@ const blogReducer = (state = initState, action) => {
       return {
         ...state,
         data: action.payload
+      };
+    case 'DEFAULT_MARKER':
+      return {
+        ...state,
+        defaultMarker: action.payload
+      };
+    case 'UPDATE_LOADER':
+      return {
+        ...state,
+        loading: action.payload
       };
     default:
       return state;

@@ -1,3 +1,3 @@
-const postPerPage = 6;
+const postPerPage = 2;
 
 export default postPerPage;
