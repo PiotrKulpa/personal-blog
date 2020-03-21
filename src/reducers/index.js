@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
 
 const initState = {
-  data: {},
-  defaultMarker: '',
-  loading: false,
+  data: [],
+  singlePost: [],
+  currentPage: 1,
+  totalPages: 1,
+  loading: true,
   error: false,
 };
 
@@ -14,10 +16,15 @@ const blogReducer = (state = initState, action) => {
         ...state,
         data: action.payload
       };
-    case 'DEFAULT_MARKER':
+    case 'UPDATE_POST':
       return {
         ...state,
-        defaultMarker: action.payload
+        singlePost: action.payload
+      };
+    case 'UPDATE_TOTAL_PAGES':
+      return {
+        ...state,
+        totalPages: action.payload
       };
     case 'UPDATE_LOADER':
       return {

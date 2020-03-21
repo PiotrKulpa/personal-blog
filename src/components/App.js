@@ -28,7 +28,9 @@ const App = () => {
         <Switch>
            <Route exact path="/" component={Home} />
            {/* zmien na osobne komponenty dla szukaj blog oraz blog/strona */}
-           <Route path="/blog" component={PostsDefault} /> 
+           <Route exact path="/blog/strona/:id" component={PostsDefault} /> 
+           <Route exact path="/blog/:id" component={Post} /> 
+           <Route exact path="/blog" component={PostsDefault} /> 
            <Route exact path="/szukaj/:id" component={Blog} />
            {/* <Route exact path="/blog/:id" component={Post} /> */}
            {/* <Route exact path="/blog/strona" component={Posts} /> */}

@@ -6,16 +6,22 @@ import { useSelector, useDispatch } from 'react-redux';
 import GET_POSTS from '../queries/getPosts';
 import postPerPage from '../helpers/postPerPage';
 
-
 const Pagination = (props) => {
   const [counter, setCounter] = useState(0);
+  const [totalPagesData, setTotalPagesData] = useState([1]);
   const dispatch = useDispatch();
   const data = useSelector(({ blogReducer }) => blogReducer.data);
+  const totalPages = useSelector(({ blogReducer }) => blogReducer.totalPages);
   const {posts : {pageInfo: {hasNextPage = true, hasPreviouesPage = true} = {}} = {} } = data;
   const {client} = props;
 
-  useEffect(() => console.log(counter), [counter])
-  
+  useEffect(() => {
+    const accum = [];
+    for(let x = 0; x < Number(totalPages); x++) {
+      accum.push(x + 1);
+    };
+    setTotalPagesData(accum);
+  }, [totalPages]);
 
   const goNext = () => {
     const{endCursor} = data.posts.pageInfo
@@ -60,6 +66,15 @@ const Pagination = (props) => {
       }}>
         <li onClick={goBack} style={{pointerEvents: counter ? 'inherit' : 'none'}}>
           <Link to={`/blog/strona`} >Poprzednia strona</Link>
+        </li>
+        <li
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+           }}
+        >
+          {totalPagesData && totalPagesData.map((el) => <Link key={el} to={`/blog/strona/${el}`} >{el}</Link>)}
         </li>
         <li onClick={goNext} style={{pointerEvents: hasNextPage ? 'inherit' : 'none'}}>
           <Link to={`/blog/strona`} >Następna strona</Link>
