@@ -1,9 +1,6 @@
 import React, { memo } from 'react';
 import Sidebar from './Sidebar';
-import Pagination from './Pagination';
 import Breadcrumbs from './Breadcrumbs';
-import Posts from './Posts';
-import SearchResult from './SearchResult';
 
 const Blog = (props) => {
 
@@ -19,7 +16,6 @@ const Blog = (props) => {
               <div className="row">
                { props.children }
               </div>
-              <Pagination />
             </div>
             <Sidebar />
           </div>

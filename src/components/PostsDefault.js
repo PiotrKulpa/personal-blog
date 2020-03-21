@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 import stringSlicer from '../helpers/stringSlicer';
 
 import Preloader from './Preloader';
+import Pagination from './Pagination';
 import Blog from './Blog';
 import { getPosts } from '../api/posts';
 
@@ -74,6 +75,7 @@ const PostsDefault = () => {
       )
       :
       <p>Nie znaleziono wpisów.</p>}
+      <Pagination url="/blog/strona/" />
       </Blog>
   )
 }
