@@ -17,3 +17,8 @@ export const searchPost = async (search, pageId) => {
   const result = await axios.get(`${serverAddress}${endpoint}?&_embed&search=${search}&page=${pageId}`);
   return result;
 }
+
+export const searchTags = async (tag, pageId) => {
+  const result = await axios.get(`${serverAddress}${endpoint}?_embed&tags=${tag}&page=${pageId}`);
+  return result;
+}

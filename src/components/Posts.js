@@ -1,58 +1,40 @@
-import React, { memo } from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import React, { memo, useEffect } from 'react';
+import { NavLink, Link, useRouteMatch } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import stringSlicer from '../helpers/stringSlicer';
 
 import Preloader from './Preloader';
+import Pagination from './Pagination';
 import Blog from './Blog';
+import PostList from './PostList';
+import { getPosts } from '../api/posts';
 
-
-const Posts = () => {
+const PostsDefault = () => {
+  const dispatch = useDispatch();
   const blog = useSelector(({ blogReducer }) => blogReducer.data);
-  
-  const {
-    posts
-  } = blog || {};
-  const {
-    edges,
-  } = posts || {};
+  const loading = useSelector(({ blogReducer }) => blogReducer.loading);
+  const match = useRouteMatch();
+  const { params: { id = '1' } } = match;
 
-  return (
-    <Blog>
-    {edges && edges.length > 0 ?
-      edges.map(({ node: { title = '', content = '', featuredImage, tags, uri = '' } }, index) => {
-        const { sourceUrl } = featuredImage || {}
-        const { edges } = tags || {}
-        return (
-          <div key={index} className="col-xl-12 col-lg-6 col-md-6 col-12">
-            <div className="blog-box-layout5">
-              <div className="media media-none--lg">
-                <div className="item-img">
-                  <NavLink to={`/blog/${uri}`}><img src={sourceUrl || '/img/placeholder.jpg'} alt="Blog" /></NavLink>
-                </div>
-                <div className="media-body">
-                  <ul className="entry-meta">
-                    <li>
-                      {edges.map(({ node = {} }, i) => <a key={i} href="/">{node.name && node.name}</a>)}
-                    </li>
-                  </ul>
-                  <h3 className="item-title"><Link to={`/blog/${uri}`}>{title}</Link></h3>
-                  <p dangerouslySetInnerHTML={{ __html: stringSlicer(content, 0, 107).replace(/<[^>]+>/g, '') }} />
-                  <NavLink activeClassName="active-menu temp-logo" className="item-btn" to={`/blog/${uri}`}>
-                    Czytaj dalej <i className="flaticon-next"></i>
-                  </NavLink>
-                </div>
-              </div>
-            </div>
-          </div>
-        )
-      }
-      )
-      :
-      <p>Loading...</p>}
-      </Blog>
-  )
+  const getPostsOnLoad = async (pageId) => {
+    dispatch({ type: 'UPDATE_LOADER', payload: true });
+    const result = await getPosts(pageId);
+    dispatch({ type: 'UPDATE_LOADER', payload: false });
+    const { data = {}, headers = {} } = result || {};
+    console.log(data);
+
+    const totalPages = headers['x-wp-totalpages'] || '1';
+    dispatch({ type: 'UPDATE_POSTS', payload: data });
+    dispatch({ type: 'UPDATE_TOTAL_PAGES', payload: totalPages });
+  }
+
+  useEffect(() => {
+    getPostsOnLoad(id);
+  }, [getPosts, id]);
+
+
+  return <PostList data={blog} loading={loading} url="/blog/strona/" />
 }
 
-export default withRouter(memo(Posts));
+export default withRouter(memo(PostsDefault));

@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 const initState = {
   data: [],
   searchData: [],
+  searchTags: [],
   singlePost: [],
   currentPage: 1,
   totalPages: 1,
@@ -26,6 +27,11 @@ const blogReducer = (state = initState, action) => {
       return {
         ...state,
         searchData: action.payload
+      };
+    case 'SEARCH_TAGS':
+      return {
+        ...state,
+        searchTags: action.payload
       };
     case 'UPDATE_TOTAL_PAGES':
       return {
