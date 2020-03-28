@@ -1,65 +1,77 @@
-import React, { memo, useState, useEffect } from 'react';
+import React, { memo, useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { withApollo } from 'react-apollo';
-import { useSelector, useDispatch } from 'react-redux';
-
-import GET_POSTS from '../queries/getPosts';
-import postPerPage from '../helpers/postPerPage';
+import { useSelector } from 'react-redux';
 
 const Pagination = (props) => {
-  const [counter, setCounter] = useState(0);
   const [totalPagesData, setTotalPagesData] = useState([1]);
-  const dispatch = useDispatch();
-  const data = useSelector(({ blogReducer }) => blogReducer.data);
+  const [linkWidth, setLinkWidth] = useState(0);
   const totalPages = useSelector(({ blogReducer }) => blogReducer.totalPages);
-  const {posts : {pageInfo: {hasNextPage = true, hasPreviouesPage = true} = {}} = {} } = data;
-  const { url = '' } = props;
+  const { url = '', currentPage } = props;
+  const convCurrentPage = Number(currentPage);
+  const convTotalPages = Number(totalPages);
+  const refLink = useRef(0);
+
+  useEffect(() => {
+    setLinkWidth(refLink.current.clientWidth);
+  }, [refLink]);
 
   useEffect(() => {
     const accum = [];
-    for(let x = 0; x < Number(totalPages); x++) {
+    for(let x = 0; x < convTotalPages; x++) {
       accum.push(x + 1);
     };
     setTotalPagesData(accum);
   }, [totalPages]);
 
-  const goNext = () => {
-    const{endCursor} = data.posts.pageInfo
-    setCounter((prevState) => prevState + 1);
-    dispatch({type: 'UPDATE_LOADER', payload: true});
-  }
-
-  const goBack = () => {
-    setCounter((prevState) => prevState - 1);
-    const{startCursor} = data.posts.pageInfo;
-  }
-
   return (
     <div className="pagination-layout2 margin-b-30">
-      <ul   style={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-      }}>
-        <li onClick={goBack} style={{pointerEvents: counter ? 'inherit' : 'none'}}>
-          <Link to={`/blog/strona`} >Poprzednia strona</Link>
+      <ul   
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+        }}
+      >
+        <li style={{pointerEvents: convCurrentPage !== 1 ? 'inherit' : 'none'}}>
+          <Link to={`${url}${convCurrentPage - 1}`} >Poprzednia strona</Link>
         </li>
-        <li
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-           }}
+        <div
+        style={{
+          width: `${3 * linkWidth}px`,
+          overflowX: 'hidden'
+        }}
         >
-          {totalPagesData && totalPagesData.map((el) => <Link key={el} to={`${url}${el}`} >{el}</Link>)}
-        </li>
-        <li onClick={goNext} style={{pointerEvents: hasNextPage ? 'inherit' : 'none'}}>
-          <Link to={`/blog/strona`} >Następna strona</Link>
+          <div
+            style={{
+              marginLeft: `-${(convCurrentPage - 2) * linkWidth }px`,
+              display: 'flex',
+            }}
+          >
+            {totalPagesData && totalPagesData.map((el) => 
+              <Link 
+                style={{
+                  fontSize: '18px',
+                  color: `${convCurrentPage === el ? 'white' : '#111111'}`,
+                  padding: '10px 17px',
+                  borderRadius: '4px',
+                  backgroundColor: `${convCurrentPage === el ? 'black' : '#f5f5f5'}`,
+                  display: 'block',
+                 }}
+                key={el} 
+                to={`${url}${el}`} 
+                ref={refLink}
+              >
+                {el}
+              </Link>)}
+          </div>
+        </div>
+        <li style={{pointerEvents: convCurrentPage >= convTotalPages ? 'none' : 'inherit'}}>
+          <Link to={`${url}${convCurrentPage + 1}`} >Następna strona</Link>
         </li>
       </ul>
     </div>
   )
-  
 }
 
 export default withApollo(memo(Pagination));

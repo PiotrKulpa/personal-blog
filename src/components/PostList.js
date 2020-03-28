@@ -7,7 +7,7 @@ import Pagination from './Pagination';
 import Blog from './Blog';
 
 const PostList = (props) => {
-  const { data, loading, url } = props
+  const { data, loading, url, currentPage } = props;
 
   if (loading) return (<Preloader />);
 
@@ -26,6 +26,7 @@ const PostList = (props) => {
           const photo = _embedded['wp:featuredmedia'] &&
             _embedded['wp:featuredmedia'][0].media_details.sizes.medium.source_url;
           const embedTags = _embedded['wp:term'] && _embedded['wp:term'];
+          const filteredTag = embedTags[1];
           return (
             <div key={index} className="col-xl-12 col-lg-6 col-md-6 col-12">
               <div className="blog-box-layout5">
@@ -34,15 +35,8 @@ const PostList = (props) => {
                     <NavLink to={`/blog/${slug}`}><img src={photo || '/img/placeholder.jpg'} alt="Blog" /></NavLink>
                   </div>
                   <div className="media-body">
-                    <ul className="entry-meta">
-                      {tags && tags.map((el, i) => {
-                        const filteredTag = embedTags.filter((filterEl) => filterEl[0].id === el);
-                        console.log(filteredTag);
-                        return (
-                        filteredTag.length > 0 && filteredTag.map((ell) => (<li key={i}><a href={`/tagi/${ell[0].id}/1`}>{ell[0].name}</a></li>))
-                        )
-                      }
-                      )}
+                    <ul className="entry-meta"> 
+                        {filteredTag.length > 0 && filteredTag.map((el, i) => (<li key={i}><a href={`/tagi/${el.id}/1`}>{el.name}</a></li>))}
                     </ul>
                     <h3 className="item-title"><Link to={`/blog/${slug}`}>{title.rendered}</Link></h3>
                     <p dangerouslySetInnerHTML={{ __html: stringSlicer(content.rendered, 0, 107).replace(/<[^>]+>/g, '') }} />
@@ -58,7 +52,7 @@ const PostList = (props) => {
         )
         :
         <p>Nie znaleziono wpisów.</p>}
-      <Pagination url={url} />
+      <Pagination url={url} currentPage={currentPage}/>
     </Blog>
   )
 }

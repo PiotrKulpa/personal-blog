@@ -1,12 +1,8 @@
 import React, { memo, useEffect } from 'react';
-import { NavLink, Link, useRouteMatch } from 'react-router-dom';
+import { useRouteMatch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import stringSlicer from '../helpers/stringSlicer';
 
-import Preloader from './Preloader';
-import Pagination from './Pagination';
-import Blog from './Blog';
 import PostList from './PostList';
 import { getPosts } from '../api/posts';
 
@@ -22,8 +18,6 @@ const PostsDefault = () => {
     const result = await getPosts(pageId);
     dispatch({ type: 'UPDATE_LOADER', payload: false });
     const { data = {}, headers = {} } = result || {};
-    console.log(data);
-
     const totalPages = headers['x-wp-totalpages'] || '1';
     dispatch({ type: 'UPDATE_POSTS', payload: data });
     dispatch({ type: 'UPDATE_TOTAL_PAGES', payload: totalPages });
@@ -34,7 +28,12 @@ const PostsDefault = () => {
   }, [getPosts, id]);
 
 
-  return <PostList data={blog} loading={loading} url="/blog/strona/" />
+  return <PostList 
+          data={blog} 
+          loading={loading} 
+          url="/blog/strona/"
+          currentPage={id}
+        />
 }
 
 export default withRouter(memo(PostsDefault));
